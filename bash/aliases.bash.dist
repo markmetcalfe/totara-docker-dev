@@ -1,30 +1,105 @@
-# You can use these aliases as a template, just copy/rename this file to aliases.bash
+# You can use these aliases as a template, just copy/rename this file to aliases.sh
+
+# To be backwards compatible with older totara versions
+function getserverdir() {
+	if [ -d './server' ]; then
+		SERVERDIR='server/';
+	else
+		SERVERDIR='';
+	fi;
+}
 
 # Perform a fresh install of Totara
-alias install='php admin/cli/install_database.php --adminpass=admin --adminemail=admin@totara.local --agree-license --fullname=Totara\ 13\ Dev --shortname=t13-dev'
+function install() {
+	getserverdir
+	php ${SERVERDIR}admin/cli/install_database.php \
+		--adminpass=admin \
+		--adminemail=admin@example.com \
+		--agree-license \
+		--fullname=Totara\ 13\ Dev \
+		--shortname=t13-dev $@
+}
 
 # Upgrade the installation
-alias upgrade='php admin/cli/upgrade.php --non-interactive'
+function upgrade() {
+	getserverdir
+	php ${SERVERDIR}admin/cli/upgrade.php --non-interactive --allow-unstable $@
+}
+
+# Run cron
+function cron() {
+	getserverdir
+	php ${SERVERDIR}admin/cli/cron.php $@
+}
+
+# Purge caches
+function purge() {
+	getserverdir
+	php ${SERVERDIR}admin/cli/purge_caches.php $@
+}
 
 # Initialise PHPUnit
-alias installunit='php admin/tool/phpunit/cli/init.php'
+function installunit() {
+	getserverdir
+	php ${SERVERDIR}admin/tool/phpunit/cli/init.php $@
+}
 
 # Initialise Behat
-alias installbehat='php admin/tool/behat/cli/init.php'
+function installbehat() {
+	getserverdir
+	php ${SERVERDIR}admin/tool/behat/cli/init.php $@
+}
+
+# Initialise Behat in parallel mode
+function installbehatparallel() {
+	getserverdir
+	if [ -z "$1" ]; then
+		php ${SERVERDIR}admin/tool/behat/cli/init.php --parallel=4;
+	else
+		php ${SERVERDIR}admin/tool/behat/cli/init.php $@;
+	fi
+}
 
 # Run PhpUnit
-alias unit='vendor/bin/phpunit --test-suffix="test.php" '
-
-# Run all the PHPUnit tests in a specific folder - e.g. totara/plan/tests
-function unitdir() {
-	vendor/bin/phpunit "$1/tests/." --test-suffix="test.php"
+function unit() {
+	getserverdir
+	if [ -z "$SERVERDIR" ]; then
+		vendor/bin/phpunit --test-suffix="test.php" $@;
+	else
+		php test/phpunit/phpunit.php run --test-suffix="test.php" $@;
+	fi
 }
 
 # Run Behat
-alias behat='vendor/bin/behat '
+function behat() {
+	getserverdir
+	if [ -z "$SERVERDIR" ]; then
+		vendor/bin/behat $@;
+	else
+		test/behat/vendor/bin/behat --config test/behat/behat.yml $@;
+	fi
+}
 
-# Run cron
-alias cron='php admin/cli/cron.php'
+# Run Behat in parallel mode
+function behatparallel() {
+	getserverdir
+	if [ -z "$SERVERDIR" ]; then
+		php admin/tool/behat/cli/run.php $@;
+	else
+		php test/behat/behat.php behat_run $@;
+	fi
+}
 
 # Create a test course
-alias createcourse='php admin/tool/generator/cli/maketestcourse.php --shortname=course --size=S'
+function createcourse() {
+	getserverdir
+	php ${SERVERDIR}admin/tool/generator/cli/maketestcourse.php \
+		--shortname=course \
+		--size=S $@
+}
+
+# Create a test user
+function createuser() {
+	getserverdir
+	php ${SERVERDIR}totara/generator/cli/maketestuser.php $@
+}
