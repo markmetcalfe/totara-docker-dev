@@ -1,10 +1,12 @@
 TravisCI build: [![Build Status](https://travis-ci.com/totara/totara-docker-dev.svg?branch=master)](https://travis-ci.com/totara/totara-docker-dev)
 
-### Container versions and build status:
+<details>
+<summary>Container versions and build status</summary>
+
 Name | Version | Dockerfile | Build
 --- | --- | --- | ---
 nginx | 1.13.x | [Dockerfile](https://github.com/totara/totara-docker-dev/blob/master/nginx/Dockerfile) | [![Build status Nginx](https://img.shields.io/docker/build/totara/docker-dev-nginx.svg)](https://hub.docker.com/r/totara/docker-dev-nginx/)
-apache | 2.4.x | [Dockerfile](https://github.com/totara/totara-docker-dev/blob/master/apache/Dockerfile) | [![Build status Nginx](https://img.shields.io/docker/build/totara/docker-dev-apache.svg)](https://hub.docker.com/r/totara/docker-dev-apache/)
+apache | 2.4.x | [Dockerfile](https://github.com/totara/totara-docker-dev/blob/master/apache/Dockerfile) | [![Build status Apache](https://img.shields.io/docker/build/totara/docker-dev-apache.svg)](https://hub.docker.com/r/totara/docker-dev-apache/)
 mssql | 2017 | [Dockerfile](https://github.com/totara/totara-docker-dev/blob/master/mssql/Dockerfile) | [![Build status Mssql](https://img.shields.io/docker/build/totara/docker-dev-mssql.svg)](https://hub.docker.com/r/totara/docker-dev-mssql/)
 php53 | 5.3 |  [Dockerfile](https://github.com/totara/totara-docker-dev/blob/master/php/php53/Dockerfile) | [![Build status PHP 5.3](https://img.shields.io/docker/build/totara/docker-dev-php53.svg)](https://hub.docker.com/r/totara/docker-dev-php53/)
 php53-debug | 5.3 + xdebug 2.0.5 |  [Dockerfile](https://github.com/totara/totara-docker-dev/blob/master/php/php53-debug/Dockerfile) | [![Build status PHP 5.3 Debug](https://img.shields.io/docker/build/totara/docker-dev-php53-debug.svg)](https://hub.docker.com/r/totara/docker-dev-php53-debug/)
@@ -25,85 +27,143 @@ php73-debug | 7.3 + xdebug 2.9.6 |  [Dockerfile](https://github.com/totara/totar
 php74 | 7.4 |  [Dockerfile](https://github.com/totara/totara-docker-dev/blob/master/php/php74/Dockerfile) | [![Build status PHP 7.4](https://img.shields.io/docker/build/totara/docker-dev-php74.svg)](https://hub.docker.com/r/totara/docker-dev-php74/)
 php74-debug | 7.4 + xdebug 2.9.6 |  [Dockerfile](https://github.com/totara/totara-docker-dev/blob/master/php/php74-debug/Dockerfile) | [![Build status PHP 7.4 Debug](https://img.shields.io/docker/build/totara/docker-dev-php74-debug.svg)](https://hub.docker.com/r/totara/docker-dev-php74-debug/)
 php80 | 8.0 |  [Dockerfile](https://github.com/totara/totara-docker-dev/blob/master/php/php80/Dockerfile) | [![Build status PHP 8.0](https://img.shields.io/docker/build/totara/docker-dev-php80.svg)](https://hub.docker.com/r/totara/docker-dev-php80/)
+</details>
 
-# A Docker setup for local Totara Learn development
+# A Docker setup for local Totara development
 
 This project aims to provide an easy way to start developing for Totara by providing a Docker setup.
 
-This setup was created and tested intensively on a Mac OS and Linux. It works on Windows as well (best with WSL2).
+This setup was created and tested extensively on MacOS and Linux. It also works on Windows via WSL2.
 
-Although this project started as a development environment for Totara Learn it can be used for any other PHP project.
+Although this project started as a development environment for Totara Learn it can be adapted for use in any other PHP project.
 
-### What you get:
+### What You Get
  * [NGINX](https://nginx.org/) as a webserver
- * [Apache](https://httpd.apache.org/) as an alternative webserver
- * [PHP](http://php.net/) 5.3, 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4, 8.0 to test for different versions
- * [PostgreSQL](https://www.postgresql.org/) (9.3, 9.6, 10, 11, 12), [MariaDB](https://mariadb.org/) (10.2, 10.4 and 10.5) and [MySQL](https://www.mysql.com/) (5.7.x and 8), and [Microsoft SQL Server 2017](https://www.microsoft.com/en-us/sql-server/sql-server-2017) support
+ * [Apache](https://httpd.apache.org/) as a webserver
+ * [PHP](http://php.net/) 5.3, 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4 to test for different versions
+ * [PostgreSQL](https://www.postgresql.org/) (9.3, 9.6, 10, 11, 12), [MariaDB](https://mariadb.org/) (10.2, 10.4 and 10.5) and [MySQL](https://www.mysql.com/) (5.7 and 8), and [Microsoft SQL Server 2017](https://www.microsoft.com/en-us/sql-server/sql-server-2017) support
+ * [NodeJS](https://nodejs.org/) for building, developing and testing frontend code
  * A [PHPUnit](https://phpunit.de/) and [Behat](http://behat.org/en/latest/) setup to run tests (including [Selenium](https://www.seleniumhq.org/))
- * A [mailcatcher](https://mailcatcher.me/) instance to inspect mails
+ * A [mailcatcher](https://mailcatcher.me/) instance to view sent emails
  * [Redis](https://redis.io/) for caching and/or session handling
  * [XHProf](https://github.com/tideways/php-xhprof-extension) for profiling
  * [XDebug](https://xdebug.org/) installed, ready for debugging with your favorite IDE
 
-### Requirements:
- * Totara source code: https://help.totaralearning.com/display/DEV/Getting+the+code
- * Docker: https://www.docker.com (for Docker on Mac OS please read the [Performance section](#performance))
- * Docker-compose: https://docs.docker.com/compose/install (included in Docker for Mac/Windows)
- * Mutagen v0.10.0+: http://mutagen.io/ (optional, for more speed on Mac, not needed for Linux)
+### Requirements
+ * [Totara source code](https://help.totaralearning.com/display/DEV/Getting+the+code)
+ * [Docker](https://www.docker.com)
+ * [Docker-compose](https://docs.docker.com/compose/install) (included in Docker for Mac/Windows)
  * At least 3.25GB of RAM for MSSQL
 
-## Contribute
+__Recommended for macOS / Windows machines:__
+ * [Mutagen](docs/mutagen.md) v0.10.0+ (significantly improves performance)
 
-Please check out the [contribute](CONTRIBUTE.md) page for more information on how you can help us.
-
-## Install
- 1. Clone the Totara source code (see requirements) 
- 1. Clone this project
- 1. Install [mutagen](#mutagen) (optionally, recommended for Mac OS)
- 1. Copy the file __.env.dist__ to __.env__ and change at least the path to your local Totara source folder (LOCAL_SRC)
- 1. Make sure you have all the hosts in your /etc/hosts file to be able to access them via the browser
-
-__Example:__
+## Installation
+ 1. (Optional, recommended for MacOS/Windows) Install [Mutagen](docs/mutagen.md)
+ 1. Create a directory that you can clone your Totara sites into (e.g. ```~/totara-sites```)
+ 1. Copy the file ```.env.dist``` to ```.env``` and set ```LOCAL_SRC``` to the path to your local Totara site folder (e.g. ```LOCAL_SRC=~/totara-sites```)
+ 1. Copy the file ```shell/aliases.sh.dist``` to ```shell/aliases.sh```
+ 1. Clone the Totara source code into your site folder and give it a name (e.g. ```cd ~/totara-sites && git clone REPO_URL totara13```)
+ 1. Copy the file ```config.php``` from this repo into your Totara site repo folder
+ 1. Add the ```bin/``` folder to your paths (e.g. ```PATH=$PATH:/path/to/docker-dev/bin```)
+ 1. Configure your terminal to use an [extended font pack](https://github.com/romkatv/nerd-fonts)
+ 1. Make sure you have all the hosts in your ```/etc/hosts``` file to be able to access them via the browser. Example:
 ```bash
-127.0.0.1   localhost totara54 totara54.debug totara54.behat totara55 totara55.debug totara55.behat totara56 totara56.debug totara56.behat totara70 totara70.debug totara70.behat totara71 totara71.debug totara71.behat totara72 totara72.debug totara72.behat totara73 totara73.debug totara73.behat totara74 totara74.debug totara74.behat totara80 totara80.behat
+127.0.0.1 totara53 totara53.debug totara53.behat totara54 totara54.debug totara54.behat totara55 totara55.debug totara55.behat totara55 totara55.debug totara56.behat totara70 totara70.debug totara70.behat totara71 totara71.debug totara71.behat totara72 totara72.debug totara72.behat totara73 totara73.debug totara73.behat totara74 totara74.debug totara74.behat totara80 totara80.behat
 ```
-
-## Upgrade
-If you are already using the docker setup, but you want to make sure you get the latest changes and features:
-1. check out the newest [release upgrade notes](https://github.com/totara/totara-docker-dev/releases)
-1. make sure you pull the latest code from this repository
-1. and use the `tpull` script in the bin/ folder to pull the latest images
-1. `tup` any already running containers to apply changes
-
-```bash
-tpull [all]   # updates all images already present locally by pulling the latest changes from docker hub
-tpull nginx   # to update a specific image use the last part of the repository name, for example nginx resolves to docker-dev-nginx
-tpull php73
-```
-
-Alternatively to pulling the pre-built images you can also rebuild themselves by using `tbuild [container]`, for example `tbuild php-7.3`. Please note that rebuilding the images can take some time.
-
-## Performance
-
-To speed up performance you can use a sync tool called mutagen. 
-
-This is especially relevant for Mac OS and Windows as the performance of mounted volumes on those platforms is really bad. If you are using Linux you can skip this as performance there is pretty good, almost native.
-
-See chapter [mutagen](#mutagen) for instructions on how to set it up.
 
 ## Usage
 
-#### Start containers
+### Databases
 
-It is recommended to specify the containers you really need. The minimum you probably need is the db and the php container of your choice, the nginx container is started automatically alongside the php container.
+Like most content/learning management systems, you will need a database to run Totara.
 
-The scripts for the following commands are located in the bin/ folder of this project. Either run the commands directly, like `bin/tup`, or add the bin folder to your PATH to not bother about your current folder.
+The easiest way to set up a database is via the ```tdb``` command.
+It allows you to easily interact with any of the 4 supported DBMSes in a simple and consistent way.
+The script allows you to create, drop, backup and restore any database without having to remember the specific commands for each dbms.
+
+To get started, simply define which database type and host you wish to use in your ```config.php```, then run:
+```bash
+cd sitefolder # must run the command from the root of your Totara repo
+tdb # prints help - shows what commands are available
+tdb create
+```
+
+Alternatively, you can manually configure your databases via these commands:
+<details>
+<summary>Commands</summary>
+
+**PostgreSQL**
+```bash
+tdocker exec pgsql psql -U postgres
+```
+```sql
+CREATE DATABASE my_totara_db;
+```
+
+**MySQL 8**
+```bash
+tdocker exec mysql8 mysql -u root -p"root"
+```
+```sql
+CREATE DATABASE my_totara_db DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_as_cs;
+```
+
+**MySQL 5.7 / MariaDB**
+```bash
+tdocker exec mysql mysql -u root -p"root"
+tdocker exec mariadb mysql -u root -p"root"
+```
+```sql
+CREATE DATABASE my_totara_db DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+```
+
+**Microsoft SQL Server 2017**
+```bash
+tdocker exec php-7.3 /opt/mssql-tools/bin/sqlcmd -S mssql -U SA -P "Totara.Mssql1"
+```
+```sql
+CREATE DATABASE my_totara_db COLLATE Latin1_General_CS_AS ALTER DATABASE my_totara_db SET ANSI_NULLS ON ALTER DATABASE my_totara_db SET QUOTED_IDENTIFIER ON ALTER DATABASE my_totara_db SET READ_COMMITTED_SNAPSHOT ON;
+GO
+```
+</details>
+<details>
+<summary>Database Login Credentials</summary>
+
+DB | Host | Port | User | Password |
+--- | --- | --- | --- | ---
+**PostresSQL 12 (latest)** | pgsql | 5432 | postgres | 
+**PostresSQL 11** | pgsql11 | 5411 | postgres | 
+**PostresSQL 10** | pgsql10 | 5410 | postgres | 
+**PostresSQL 9.6** | pgsql96 | 5496 | postgres | 
+**PostresSQL 9.3** | pgsql93 | 5493 | postgres | 
+**Mysql 8** | mysql8 | 3308 | root | root
+**Mysql 5.7** | mysql | 3306 | root | root
+**MariaDB 10.5** | mariadb | 3307 | root | root
+**MariaDB 10.4** | mariadb104 | 3309 | root | root
+**MariaDB 10.2** | mariadb102 | 3302 | root | root
+**Mssql** | mssql | 1433 | SA | Totara.Mssql1
+</details>
+
+Once you have a database created, you should be able to access the site from the web -
+try visiting __[http://totara73/sitename/server](http://totara73/)__ (where ```sitename``` is the folder name of your Totara repo)
+
+### Using Containers
+
+#### Starting Containers
+
+It is recommended to specify the containers you really need.
+The minimum you probably need is the db and the php container of your choice,
+the nginx container is started automatically alongside the php container.
+
+The scripts for the following commands are located in the ```bin/``` folder of this project.
 
 ```bash
+# equivalent to: docker-compose up -d pgsql php-7.3
 tup pgsql php-7.3
 ```
 
-If you need additional containers at a later point just run tup with the container you need:
+If you need additional containers at a later point just run ```tup``` with the container you need:
 
 ```bash
 tup php-5.6
@@ -111,35 +171,50 @@ tup mariadb
 tup selenium-hub
 ```
 
-#### Start all
+#### Shell Session
 
-This starts a lot of containers so consider running only those you really need.
-
+For the PHP containers, you can use the [zsh shell](#oh-my-zsh-shell) to run commands for your Totara site via ```tzsh```:
 ```bash
-tup
+cd sitefolder # must run the commands from the root of your Totara repo
+tzsh php-7.3
+# OR
+tzsh php-7.3-debug # for XDebug support
+# OR
+tzsh php-5.6 # for older Totara versions
 ```
 
-#### Stop/Shutdown
+If required, you can also start a shell session for any container via ```tbash```:
+```bash
+# It doesn't matter where you run the tbash command from
+tbash php-7.3
+tbash nginx
+tbash pgsql
+tbash apache
+```
+
+#### Stopping Containers
 
 ```bash
-# this just stops the containers, equivalent to docker-compose stop
+# stops the specified containers, equivalent to: docker-compose stop
 tstop
-# this shuts all containers (and pauses an existing mutagen session) down, equivalent to docker-compose down
+
+# stops all containers, equivalent to: docker-compose down
+# also pauses existing mutagen sessions
 tdown
 ```
 
 #### More Commands
 
-This project comes with a few bash scripts to simplify usage across platforms. The scripts are located in the **bin/** folder. Ideally you add the bin folder to your PATH environment variable so you can run the commands from anywhere.
+This project comes with a few bash scripts to simplify usage across platforms. The scripts are located in the ```bin/``` folder.
 
 ```bash
-tbash [container]                 # log into a container via bash, i.e. php-7.2
+tbash [container]                 # log into a container via bash, i.e. php-7.3
 tbuild [container]                # build (all) container(s)
 tdb [options]                     # run common actions for your databases
 tdocker                           # shortcut to general docker-compose ... command
 tdown                             # shutdown all containers
 tgrunt [options]                  # run grunt in container, supports running in subfolders
-tngrok [host]                     # shortcut to running ngrok with a totara host such as totara74.debug or totara56
+tngrok [host]                     # shortcut to running ngrok with a Totara host such as totara74.debug or totara56
 tnpm [options]                    # run npm in container, supports running in subfolders
 tpull                             # pull latest images (only those which you already have locally) 
 trestart [container]              # restart (all) container(s)
@@ -148,404 +223,69 @@ tstats                            # show docker stats including container names
 tstop [container]                 # stop (all) container(s)
 tunit [container] [folder] [init] # run or init unit tests in given container for given version
 tup [containers]                  # start (all) container(s)
-tzsh [php container]              # log into a php container via oh my zsh, i.e. php-7.2
+tzsh [php container]              # log into a php container via oh my zsh, i.e. php-7.3
 ```
 
 ### Multiple versions
 
-It is recommended to check out each Totara Learn version in a different subfolder below the folder LOCAL_SRC defined in .env. This enables you to access different versions without having to switch branches all the time.
+It is recommended to check out each Totara version in a different subfolder below the folder LOCAL_SRC defined in .env. This enables you to access different versions without having to switch branches all the time.
 
-### Config & Database
+### Running Cron
 
-Make sure you have configured Totara and created the databases you need. You can connect to the databases from your host using the ```tdb``` command, or any tools you prefer (host = _localhost_, use default ports).
-
-#### ```tdb``` Command
-
-The ```tdb``` command allows you to easily interact with any of the 4 supported DBMSes in a simple and consistent way. The script allows you to create, drop, backup and restore any database without having to remember the specific commands for each dbms. To get started, simply define your database ```$CFG``` variables in your ```config.php```, then run ```tdb``` from your totara site directory (not in a container)
-
-Alternatively, you can manually configure your databases via the following credentials and commands.
-
-#### Credentials
-
-DB | Host | User | Password |
---- | --- | --- | ---
-**PostresSQL 13 (latest)** | pgsql13 | postgres |
-**PostresSQL 12 ** | pgsql | postgres | 
-**PostresSQL 11** | pgsql11 | postgres | 
-**PostresSQL 10** | pgsql10 | postgres | 
-**PostresSQL 9.6** | pgsql96 | postgres | 
-**PostresSQL 9.3** | pgsql93 | postgres | 
-**Mysql 8** | mysql8 | root | root
-**Mysql 5.7** | mysql | root | root
-**MariaDB 10.5** | mariadb | root | root
-**MariaDB 10.4** | mariadb104 | root | root
-**MariaDB 10.2** | mariadb102 | root | root
-**Mssql** | mssql | SA | Totara.Mssql1
-
-To use the command line clients provided by the containers you can use the following commands:
-
-```bash
-# PostgreSQL
-tdocker exec pgsql psql -U postgres
-
-# MySQL / MySQL8 / MariaDB
-tdocker exec mysql mysql -u root -p"root"
-tdocker exec mysql8 mysql -u root -p"root"
-tdocker exec mariadb mysql -u root -p"root"
-
-# Microsoft SQL Server
-tdocker exec php-7.1 /opt/mssql-tools/bin/sqlcmd -S mssql -U SA -P "Totara.Mssql1"
-```
-
-Create a database for each Totara version you would like to develop on.
-
-Example commands:
-```sql
-# PostgreSQL
-CREATE DATABASE totara_13;
-
-# MariaDB/MySQL 5.7
-CREATE DATABASE totara_13 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-# MySQL 8
-CREATE DATABASE totara_13 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_as_cs;
-
-# MSSQL
-CREATE DATABASE totara_13 COLLATE Latin1_General_CS_AS ALTER DATABASE totara_13 SET ANSI_NULLS ON ALTER DATABASE totara_13 SET QUOTED_IDENTIFIER ON ALTER DATABASE totara_13 SET READ_COMMITTED_SNAPSHOT ON;
-GO
-```
-
-#### data directories
-
-The nginx container automatically creates a bunch of data folders ready to be used.
-
-All data directories have to be created within the `/var/www/totara/data` directory to be part of the data volume and be persistent even after shutting down docker.
-
-```bash
-/var/www/totara/data/ver[versionnumber].[database]
-/var/www/totara/data/ver[versionnumber].[database].phpunit
-/var/www/totara/data/ver[versionnumber].[database].behat
-# example
-/var/www/totara/data/ver13.pgsql
-/var/www/totara/data/ver13.pgsql.phpunit
-/var/www/totara/data/ver13.pgsql.behat
-```
-
-versionnumber = 22, 24, 25, 26, 27, 29, 9, 10, 11, 12, 13, 14
-database = pgsql, mysql, mssql
-
-To create a custom data directory just log into the nginx container (`tbash nginx`) and then create your custom folder inside `/var/www/totara/data`. 
-You may need to create custom directories for multiple installations. If you do this, you will also need to set the correct permissions on custom directories that you create.
+You can run the cron manually by logging into a php container and running:
 
 ```
-tbash php-7.3
-cd /var/www/totara/data
-mkdir your_custom_folder
-chown www-data:www-data your_custom_folder
-chmod g+s your_custom_folder
-# Now you can use /var/www/totara/data/your_custom_folder as your dataroot
-```
-
-#### Config example
-
-This is an example for the t13 branch with the 3 different databases and the correct data directories. Please note: You will need additional configuration parameters for PHPUnit and Behat. Please refer to Totara docs and have a look at config-dist.php/config-example.php for examples.
-
-```php
-//$CFG->dbtype    = 'mysqli';
-//$CFG->dbhost    = 'mysql';  // eg 'localhost' or 'db.isp.com' or IP
-//$CFG->dbuser    = 'root';   // your database username
-//$CFG->dbpass    = 'root';   // your database password
-//$CFG->dataroot  = '/var/www/totara/data/ver13.mysql';
-//$CFG->phpunit_dataroot = '/var/www/totara/data/ver13.mysql.phpunit';
-
-//$CFG->dbtype    = 'sqlsrv';
-//$CFG->dbhost    = 'mssql';  // eg 'localhost' or 'db.isp.com' or IP
-//$CFG->dbuser    = 'SA';   // your database username
-//$CFG->dbpass    = 'Totara.Mssql1';   // your database password
-//$CFG->dataroot  = '/var/www/totara/data/ver13.mssql';
-//$CFG->phpunit_dataroot = '/var/www/totara/data/ver13.mssql.phpunit';
-
-$CFG->dbtype    = 'pgsql';      // 'pgsql', 'mariadb', 'mysqli', 'mssql', 'sqlsrv'
-$CFG->dbhost    = 'pgsql';  // eg 'localhost' or 'db.isp.com' or IP
-$CFG->dbuser    = 'postgres';   // your database username
-$CFG->dbpass    = '';   // your database password
-$CFG->dataroot  = '/var/www/totara/data/ver13.pgsql';
-$CFG->phpunit_dataroot = '/var/www/totara/data/ver13.pgsql.phpunit';
-
-
-$CFG->dblibrary = 'native';     // 'native' only at the moment
-$CFG->dbname    = 'totara_13';     // database name, eg moodle
-$CFG->prefix    = 'mdl_';       // prefix to use for all table names
-$CFG->dboptions = array(
-    'dbpersist' => false,       // should persistent database connections be
-                                //  used? set to 'false' for the most stable
-                                //  setting, 'true' can improve performance
-                                //  sometimes
-    'dbsocket'  => false,       // should connection via UNIX socket be used?
-                                //  if you set it to 'true' or custom path
-                                //  here set dbhost to 'localhost',
-                                //  (please note mysql is always using socket
-                                //  if dbhost is 'localhost' - if you need
-                                //  local port connection use '127.0.0.1')
-    'dbport'    => '',          // the TCP port number to use when connecting
-                                //  to the server. keep empty string for the
-                                //  default port
-);
-
-$is_multi_site = __DIR__ !== '/var/www/totara/src';
-$site_name = $is_multi_site ? basename(__DIR__) : 'totara';
-$has_server_dir = file_exists(__DIR__  . '/server/config.php');
-
-// This detects and sets the wwwroot dynamically so you don't have to manually change it
-if (!empty($_SERVER['HTTP_X_ORIGINAL_HOST']) && strpos($_SERVER['HTTP_X_ORIGINAL_HOST'], 'ngrok.io') !== false) {
-    // using ngrok
-    $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_ORIGINAL_HOST'];
-    $CFG->wwwroot = 'https://' . $_SERVER['HTTP_HOST'];
-} else if (!empty($_SERVER['HTTP_HOST']) && !empty($_SERVER['REQUEST_SCHEME'])) {
-    // accessing it locally via the web
-    $hostname = $_SERVER['HTTP_HOST'];
-    $hostname_parts = explode('.', $hostname);
-    $CFG->wwwroot = $_SERVER['REQUEST_SCHEME'] . '://';
-
-    if (end($hostname_parts) === 'behat') {
-        // redirect if using the behat URL
-        $hostname = str_replace('.behat', '', $hostname);
-    }
-    $CFG->wwwroot .= $hostname;
-
-    if ($is_multi_site && strpos($hostname, $site_name) === false) {
-        $CFG->wwwroot .= '/' . $site_name;
-        if ($has_server_dir) {
-            $CFG->wwwroot .= '/server';
-        }
-    }
-} else {
-    // accessing it via CLI
-    $CFG->wwwroot = 'http://totara73';
-    if ($is_multi_site) {
-        $CFG->wwwroot .= '/' . $site_name;
-    }
-    if ($has_server_dir) {
-        $CFG->wwwroot .= '/server';
-    }
-}
-
-// Recommended behat configuration options
-$CFG->behat_config = array(
-    'default' => array(
-        'extensions' => array(
-            'Behat\MinkExtension' => array(
-                'browser_name' => 'chrome',
-                'default_session' => 'selenium2',
-                'selenium2' => array(
-                    'browser' => 'chrome',
-                    'wd_host' => 'http://selenium-hub:4444/wd/hub',
-                    'capabilities' => array(
-                        "browser" => "chrome",
-                        "browserName" => "chrome",
-                        "version" => '',
-                        'platform' => 'LINUX'
-                    )
-                )
-            )
-        )
-    ),
-);
-
-// Point this to your subfolder if you are using any
-$CFG->behat_wwwroot = 'http://totara73.behat/perform/server';
-//$CFG->behat_dataroot = '/var/www/totara/data/ver13.mysql.behat';
-//$CFG->behat_dataroot = '/var/www/totara/data/ver13.mssql.behat';
-$CFG->behat_dataroot = '/var/www/totara/data/ver13.pgsql.behat';
-$CFG->behat_prefix = 'bht_';
-
-// For parallel runs modify the following, use different dbs or different prefixes
-$CFG->behat_parallel_run = [
-    [
-        'dbname' => 'totara_13_behat1',
-        'behat_prefix' => 'bht_',
-    ],
-    [
-        'dbname' => 'totara_13_behat2',
-        'behat_prefix' => 'bht_',
-    ],
-    // ...
-];
-
-// Uncomment the following to enable screenshots being taken for failed steps
-// $CFG->behat_faildump_path = __DIR__ . '/screenshots/';
-
-
-// Useful options for development
-
-// Force a debugging mode regardless the settings in the site administration
-@error_reporting(E_ALL | E_STRICT);
-@ini_set('display_errors', '1');
-$CFG->debug = (E_ALL | E_STRICT);
-$CFG->debugdisplay = 1;
-
-// If you want performance information being displayed
-$CFG->perfdebug = 15;
-
-// Prevent caching
-$CFG->langstringcache = false;
-$CFG->cachejs = false; // NOT FOR PRODUCTION SERVERS!
-
-// Only for t13
-$CFG->tuidesignermode = true;
-$CFG->cache_graphql_schema = false; 
-
-$CFG->forced_plugin_settings['totara_tui'] = [
-    'cache_js' => false,
-    'cache_scss' => true,
-    'development_mode' => true
-];
-```
-
-### Run unit tests
-
-Make sure your config file contains the PHPUnit configuration needed and the database is ready.
-
-Log into one of the PHP containers:
-```bash
-tbash php-5.6
-tbash php-7.2
-# or if you need xdebug support
-tbash php-5.6-debug
-tbash php-7.2-debug
-```
-
-If your project is in a subfolder:
-```bash
-cd subfolder
-```
-
-If needed initiate the PHPUnit setup:
-```bash
-php admin/tool/phpunit/cli/init.php
-# for t13 use
-php test/phpunit/phpunit.php init
-```
-
-Start the testsuite:
-```bash
-vendor/bin/phpunit
-# for t13 use
-php test/phpunit/phpunit.php run
-```
-
-### Run behat tests
-
-Make sure your config file contains the Behat configuration needed and the database is ready.
-
-If you want to run selenium tests make sure the selenium container is started:
-```bash
-tup selenium-hub
-```
-
-and you have a behat_local.yml file in your root code folder that provides the correct configuration (e.g. points to the selenium-hub host and the base_url is correct).
-
-Log into one of the PHP containers:
-```bash
-tbash php-5.6
-tbash php-7.2
-# or if you need xdebug support
-tbash php-5.6-debug
-tbash php-7.2-debug
-```
-
-If your project is in a subfolder:
-```bash
-cd subfolder
-```
-
-If needed initiate the behat tests
-```bash
-# use --parallel=x if needed
-php admin/tool/behat/cli/init.php
-# for t13 use
-php test/behat/behat.php init
-```
-
-Run behat with:
-```bash
-# for t11
-vendor/bin/behat
-# for others use the command prompted after init, for example:
-vendor/bin/behat --config /var/www/totara/data/ver9.pgsql.behat/behatrun/behat/behat.yml
-# for t13 use
-php test/behat/behat.php run
-# for parallel run
-php test/behat/behat.php behat_run
-```
-
-## Build
-
-By default, prebuilt images from [Docker Hub](https://hub.docker.com/u/totara/) will be used. If you want to modify any of the containers to your needs then you can rebuild them locally with the following command:
-
-```bash
-tbuild
-# or for individual images
-tbuild php-7.2
-```
-
-## Running Cron
-
-You can run the cron manually by logging into a php container and from your source root run:
-
-```
-php admin/cli/cron.php
-# for t13
-php server/admin/cli/cron.php
+cron
 ```
 
 You can also use the cron containers to run the cron automatically using crontab. Just create your own crontab files within the `cron.d` folder and start a cron container like:
 
 ```bash
-# in the foreground
-tdocker up php-7.2-cron
-
 # in the background
-tup php-7.2-cron
+tup php-7.3-cron
+
+# in the foreground
+tdocker up php-7.3-cron
 
 # access the logs anytime with
-tdocker logs -f php-7.2-cron
+tdocker logs -f php-7.3-cron
 
 # stop a daemonized cron container
-tstop php-7.2-cron
+tstop php-7.3-cron
 ```
 
-## Mailcatcher
-
-The setup comes with mailcatcher support. Just add the following to your config and all mails will be sent to it:
-
-```php
-$CFG->smtphosts = 'mailcatcher:25';
-```
-
-Open __http://localhost:8080__ to open the mailcatcher GUI.
-
-If needed, modify the local port in the docker-compose.yml file.
-
-## NodeJS, NPM and grunt 
+### NodeJS, NPM and grunt 
 
 If you want to use npm you can use ```tnpm``` like this:
 ```bash
-# if your project lives in a subfolder then run the command from inside that folder
+# must run the commands from the root of your Totara repo
+cd sitefolder
+
+# Must install first
 tnpm install
+
+# Some useful commands - check the package.json to see all the available commands
+tnpm run tui-prod
 tnpm run tui-dev
 tnpm run tui-watch
+tnpm run tui-ci
 ```
 
 If you want to use grunt you can use ```tgrunt``` like this:
 ```bash
-# if your project lives in a subfolder then run the command from inside that folder
-# for t13 make sure you run this from within the server directory and run `tnpm init` there first
+# must run the commands from the root of your Totara repo
+cd sitefolder
+# if the site is Totara 13 or later, then you must run it from the server/ directory
+cd server
+
 tgrunt
 tgrunt gherkinlint
 tgrunt css
 ```
 
-Or you can just directly log in to the container directly run node/grunt commands:
+Alternatively, you can directly log in to the container directly run node/grunt commands.
+<details>
+<summary>Example</summary>
 
 ```bash
 tdocker run nodejs bash
@@ -553,91 +293,158 @@ tdocker run nodejs bash
 npm install
 ./node_modules/.bin/grunt
 ```
+</details>
 
-## mutagen
+### PHPUnit
 
-This should work on all platforms but is especially relevant for Mac OS and Windows as the performance of mounted volumes on those platforms is really bad. If you are using Linux you can skip this as performance there is pretty good, almost native.
-
-Mutagen is a two-way-sync tool with focus on performance. Read more about it here: https://mutagen.io.
-
-It runs in the background and keeps syncing your files onto a mounted volume inside your docker containers. It's pretty performant and the delay is minimal even if you change a lot of files at once.
-
-To use mutagen first install it. On Mac OS you can use homebrew for that or alternatively download the appropriate release file from https://github.com/havoc-io/mutagen/releases
-
+If this is the first time you've run PHPUnit for the site, you will need to create another database for it.
 ```bash
-brew install havoc-io/mutagen/mutagen
+cd sitefolder # must run the command from the root of your Totara repo
+tdb create unt_sitefolder
+```
+(Where ```sitefolder``` is the directory your site is located - e.g. ```totara13```)
+
+Log into one of the PHP containers:
+```bash
+cd sitefolder # must run the command from the root of your Totara repo
+tzsh php-7.3 # or other php containers, as mentioned above
 ```
 
-**Make sure you have at least version 0.10.0 runnning.**
-
-To have mutagen automatically start up with your machine
+If needed, initiate the PHPUnit setup:
 ```bash
-mutagen daemon register
+# See shell/aliases.sh.dist for what this alias does
+installunit
 ```
 
-Then start the daemon. This is a background process without the sync does not work. If you have registered the daemon with the command above you won't need to do this every time.
+Run tests:
 ```bash
-mutagen daemon start
-```
-To activate the use of mutagen copy the file `.use-mutagen.dist` to `.use-mutagen`.
-```bash
-cp .use-mutagen.dist .use-mutagen
-```
-
-If you then use the commands `tup` and `tdown` as described in the following chapters the correct sync session is automatically created for you.
-
-#### Monitoring
-
-To find out if your sync is working you can use the following command:
-```bash
-mutagen sync list
-```
-which shows something like:
-```bash
-⇒  mutagen sync list
---------------------------------------------------------------------------------
-Name: totara
-Identifier: ddc06807-2554-47f4-ba8a-230f37c5e577
-Labels: None
-Alpha:
-	URL: /your/local/path/to/totara/src
-	Connection state: Connected
-Beta:
-	URL: docker://totara_sync/var/www/totara/src
-		DOCKER_HOST=
-		DOCKER_TLS_VERIFY=
-		DOCKER_CERT_PATH=
-	Connection state: Connected
-Status: Watching for changes
---------------------------------------------------------------------------------
-```
-You can use the session id or any part of the paths to monitor the session, for example:
-```bash
-mutagen sync monitor totara
+# See shell/aliases.sh.dist for what these aliases do
+# Run all tests (in parallel across 4 processes - it can take a long time!)
+unitparallel --processes=4
+# Run a single test file
+unit relative/path/to/test.php
+# Run all tests in a directory
+unitdir totara/core
 ```
 
-## Custom docker-compose configurations
+### Behat
 
-You can customise the docker compose configurations simply adding your own `.yml` or `.yaml` compose files into the `custom` folder. Any containers or other options you have will automatically override any existing default container options.
+#### Running Behat (in parallel)
+
+If you just want to run a suite of behat tests, then it is much faster (and recommended) to run behat in parallel mode (i.e. across multiple threads simultaneously)
+
+To get started, you'll need to start the selenium containers. For the following examples, we are going to run behat across 4 threads. You can adjust this number based on your computers performance.
+```bash
+tup selenium-hub
+tscale selenium-chrome 4 # Creates 4 selenium containers for running across 4 threads
+```
+
+Log into one of the PHP containers:
+```bash
+cd sitefolder # must run the command from the root of your Totara repo
+tzsh php-7.3 # or other php containers, as mentioned above
+```
+
+Initiate the behat tests:
+```bash
+# See shell/aliases.sh.dist for what these aliases do
+installbehat --parallel=4 # Initiates for 4 threads
+# If you are wanting to run a specific tag, then you can optimise behat for it
+installbehat --parallel=4 --optimise-runs=@totara
+```
+
+Run behat with:
+```bash
+# See shell/aliases.sh.dist for what these aliases do
+# Run all scenarios (takes several hours)
+behat
+# Run a specific tag
+behat --tags=@totara
+# Run a specific scenario
+behat --name="Name of the scenario"
+# Run a specific feature file
+behat path/to/feature/file
+```
+To see the status of the selenium containers while they are executing,
+go to __[http://localhost:4444/grid/console](http://localhost:4444/grid/console)__ to view the web console.
+
+#### Debugging Behat
+
+You can connect to the selenium container via VNC to view what is being executed in the browser, which is very helpful for when writing/fixing tests.
+
+To do this, you need to set your behat host to ```selenium-chrome-debug``` in your config.php.
+If you are using the config.php that comes with docker-dev, simply find ```$DOCKER_DEV->behat_debug_mode``` and set it to ```true```.
+
+Now start the selenium debug container:
+```bash
+tup selenium-chrome-debug
+```
+
+You will then need to re-initialise behat:
+```bash
+cd sitefolder # must run the command from the root of your Totara repo
+tzsh php-7.3 # or other php containers, as mentioned above
+installbehat
+```
+Now you can run it:
+```bash
+behat --name="Name of the scenario"
+```
+In a VNC client, connect using the following credentials to view the scenario running:
+Host | Port | Password |
+--- | --- | ---
+localhost | 5901 | secret
+
+If you can't see the scenario executing, it may be because the scenario is missing the ```@javascript``` tag.
+If the tag isn't specified for the scenario it will run it in headless mode, meaning selenium won't be used.
+
+### Mailcatcher
+
+The setup comes with mailcatcher support. Mailcatcher allows you to view all emails triggered by your Totara sites.
+Go to __[http://localhost:8080](http://localhost:8080)__ to view the mailcatcher GUI.
 
 ### Ngrok
 
-__[Ngrok](https://ngrok.com/)__ is a useful tool for making your local totara site accessible publicly on the web.
+__[Ngrok](https://ngrok.com/)__ is a useful tool for making your local Totara site accessible publicly on the web.
 This is very useful when testing intergrations with Totara, such as the mobile app, or external services such as Microsoft Teams, LinkedIn Learning, or even if you simply want to make your site available for someone else to look at.
 
-You will first need to sign up for an [account](https://dashboard.ngrok.com/signup), and then install and authenticate ngrok on your machine. You will also need to make sure that the `ngrok` command can be run normally - this may require adding your ngrok installation directory to your `$PATHS` variable.
+You will first need to [sign up for an account](https://dashboard.ngrok.com/signup), and then install and authenticate ngrok on your machine. You will also need to make sure that the `ngrok` command can be run normally - this may require adding your ngrok installation directory to your `$PATHS` variable.
 
-Once ngrok is set up, you can use the ```tngrok``` command to use it with totara.
+Once ngrok is set up, you can use the ```tngrok``` command to use it with Totara.
 
-If you have multiple sites set up, you will need to add entries into your ```/etc/hosts``` file, for each totara host such as ```totara73``` that you wish to use, you will need to add one with your desired site as the subdomain, like ```yoursite.totara73```.
+If you have multiple sites set up, you will need to add entries into your ```/etc/hosts``` file, for each Totara host such as ```totara73``` that you wish to use, you will need to add one with your desired site as the subdomain, like ```yoursite.totara73```.
 
-## Custom shell aliases
+### PHPStorm Integration
+
+PHPStorm is a powerful IDE that integrates well with this docker setup. You integrate docker into PHPStorm, so you can use XDebug and run tests directly from the IDE.
+__[See here](docs/phpstorm.md)__ for information on how to set this up.
+
+### Oh My Zsh Shell
+
+Oh My Zsh is an extention for the standard zsh shell. You can use it with the php containers instead of bash by using the `tzsh` command.
+It is better than the basic bash shell as it brings colour support, autocompletion, autosuggestions and more. Oh My Zsh is highly configurable - see `shell/.zshrc` for the current configuration and check out the [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and [powerline10k](https://github.com/romkatv/powerlevel10k) docs for more ideas on what is possible.
+
+To use it, you will need to configure your terminal to use some [custom fonts](https://github.com/romkatv/nerd-fonts).
+
+### Custom Shell Aliases
 
 The `shell` folder lets you add custom aliases and functions to your php containers. Any file with the `.sh` extension will be sourced into your php container whenever you bash/sh into it. This is useful for when you need to run complex commands often during development, such as initialising tests. To get started, simply copy `aliases.sh.dist` to `aliases.sh` and define your aliases.
 
-## Oh My Zsh shell
+### Custom docker-compose Configurations
 
-Oh My Zsh is an extention for the standard zsh shell. You can use it with the php containers instead of bash by using the `tzsh` command.
-It is better than the basic bash shell as it brings colour support, autocompletion, autosuggestions and more.
-To begin using it, you will need to install [custom fonts](https://github.com/romkatv/nerd-fonts) and configure your terminal emulator to use them.
-Oh My Zsh is highly configurable - see `shell/.zshrc` for the current configuration and check out the [ohmyzsh](https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/README.md) and [powerline10k](https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/README.md) docs for more ideas on what is possible.
+You can customise the docker compose configurations simply adding your own `.yml` compose files into the `custom` folder. Any containers or other options you have will automatically override any existing default container options.
+
+## Build
+
+By default, prebuilt images from [Docker Hub](https://hub.docker.com/u/totara/) will be used. If you want to modify any of the containers to your needs then you can rebuild them locally with the following command:
+
+```bash
+# for an invidual image
+tbuild php-7.3
+# for all images
+tbuild
+```
+
+## Contribute
+
+Please check out the [contributing](docs/contributing.md) page for more information on how you can help us.
