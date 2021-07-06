@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copy this file to aliases.sh (aka remove the .dist) to enable them for use in your php containers
 # You can use these as is or customise and add new ones to your liking
 
@@ -69,22 +70,6 @@ function installunit() {
 	php ${SERVERDIR}admin/tool/phpunit/cli/init.php $@
 }
 
-# Initialise Behat
-function installbehat() {
-	getserverdir
-	php ${SERVERDIR}admin/tool/behat/cli/init.php $@
-}
-
-# Initialise Behat in parallel mode
-function installbehatparallel() {
-	getserverdir
-	if [ -z "$1" ]; then
-		php ${SERVERDIR}admin/tool/behat/cli/init.php --parallel=4;
-	else
-		php ${SERVERDIR}admin/tool/behat/cli/init.php $@;
-	fi
-}
-
 # Run PhpUnit
 function unit() {
 	getserverdir
@@ -95,32 +80,44 @@ function unit() {
 	fi
 }
 
-# Run Behat
-function behat() {
+# Run PhpUnit in parallel mode
+function unitparallel() {
 	getserverdir
-	if [ -z "$SERVERDIR" ]; then
-		vendor/bin/behat $@;
+	if [ -f ${SERVERDIR}admin/tool/phpunit/cli/parallel_run.php ]; then
+		php ${SERVERDIR}admin/tool/phpunit/cli/parallel_run.php $@
 	else
-		test/behat/vendor/bin/behat --config test/behat/behat.yml $@;
+		echo "Parallel PHPUnit is not supported for this totara version."
 	fi
 }
 
-# Run Behat in parallel mode
-function behatparallel() {
+# Run all the PHPUnit tests in a specific folder - e.g. totara/core
+function unitdir() {
 	getserverdir
 	if [ -z "$SERVERDIR" ]; then
-		php admin/tool/behat/cli/run.php $@;
+	  vendor/bin/phpunit "$1/tests/." --test-suffix="test.php"
 	else
-		php test/behat/behat.php behat_run $@;
+		php test/phpunit/phpunit.php run --test-suffix="test.php" "$PWD/server/$1/tests/.";
 	fi
+}
+
+# Initialise Behat
+function installbehat() {
+	# See shared_files/docker_dev_behat.php for what command is actually being run.
+	local command=`php /shared_files/docker_dev_behat.php $PWD install $@`
+	eval $command
+}
+
+# Run Behat
+function behat() {
+	# See shared_files/docker_dev_behat.php for what command is actually being run.
+	local command=`php /shared_files/docker_dev_behat.php $PWD $@`
+	eval $command
 }
 
 # Create a test course
 function createcourse() {
 	getserverdir
-	php ${SERVERDIR}admin/tool/generator/cli/maketestcourse.php \
-		--shortname=course \
-		--size=S $@
+	php ${SERVERDIR}admin/tool/generator/cli/maketestcourse.php $@
 }
 
 # Create a test user

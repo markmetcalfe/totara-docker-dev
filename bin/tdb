@@ -245,6 +245,7 @@ if [[ $action == 'backup' || $action == 'restore' ]]; then
             exit
         # If restoring, make sure the backup dataroot zip exists.
         elif [[ $action == 'restore' && ! -f "$backup_dataroot_local" ]]; then
+            ignore_dataroot="1";
             echo -e "\x1B[33mWARNING: Backup dataroot zip does not exist at '$backup_dataroot_local'\n         This may cause uploaded files, caches and other non-database objects to not work correctly.\x1B[0m"
         fi
     fi
