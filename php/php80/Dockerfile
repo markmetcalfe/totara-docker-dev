@@ -21,6 +21,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         libzip-dev \
         libmemcached-dev \
         zip \
+        ghostscript \
+        graphviz \
     && docker-php-ext-install -j$(nproc) zip \
         intl \
         soap \

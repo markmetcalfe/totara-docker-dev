@@ -9,9 +9,12 @@ services:
       CONTAINERNAME: php-5.3
       TZ: ${TIME_ZONE}
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -30,9 +33,12 @@ services:
       HOST_IP: ${HOST_IP}
       PHP_IDE_CONFIG: serverName=totara53
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -47,9 +53,12 @@ services:
       CONTAINERNAME: php-5.4
       TZ: ${TIME_ZONE}
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -68,9 +77,12 @@ services:
       HOST_IP: ${HOST_IP}
       PHP_IDE_CONFIG: serverName=totara54
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -85,6 +97,7 @@ services:
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - ./cron.d:/etc/cron.d
     networks:
       - totara
@@ -97,9 +110,12 @@ services:
       CONTAINERNAME: php-5.5
       TZ: ${TIME_ZONE}
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -118,9 +134,12 @@ services:
       XDEBUG_CONFIG: remote_host=${HOST_IP}
       PHP_IDE_CONFIG: serverName=totara55
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -135,6 +154,7 @@ services:
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - ./cron.d:/etc/cron.d
     networks:
       - totara
@@ -147,9 +167,12 @@ services:
       CONTAINERNAME: php-5.6
       TZ: ${TIME_ZONE}
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -168,9 +191,12 @@ services:
       XDEBUG_CONFIG: remote_host=${HOST_IP}
       PHP_IDE_CONFIG: serverName=totara56
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -185,6 +211,7 @@ services:
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - ./cron.d:/etc/cron.d
     networks:
       - totara
@@ -197,9 +224,12 @@ services:
       CONTAINERNAME: php-7.0
       TZ: ${TIME_ZONE}
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -218,9 +248,12 @@ services:
       XDEBUG_CONFIG: remote_host=${HOST_IP}
       PHP_IDE_CONFIG: serverName=totara70
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -235,6 +268,7 @@ services:
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - ./cron.d:/etc/cron.d
     networks:
       - totara
@@ -247,9 +281,12 @@ services:
       CONTAINERNAME: php-7.1
       TZ: ${TIME_ZONE}
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -268,9 +305,12 @@ services:
       XDEBUG_CONFIG: remote_host=${HOST_IP}
       PHP_IDE_CONFIG: serverName=totara71
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -285,6 +325,7 @@ services:
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - ./cron.d:/etc/cron.d
     networks:
       - totara
@@ -297,9 +338,12 @@ services:
       CONTAINERNAME: php-7.2
       TZ: ${TIME_ZONE}
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -318,9 +362,12 @@ services:
       XDEBUG_CONFIG: remote_host=${HOST_IP}
       PHP_IDE_CONFIG: serverName=totara72
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -335,6 +382,7 @@ services:
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - ./cron.d:/etc/cron.d
     networks:
       - totara
@@ -347,9 +395,12 @@ services:
       CONTAINERNAME: php-7.3
       TZ: ${TIME_ZONE}
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -368,9 +419,12 @@ services:
       XDEBUG_CONFIG: remote_host=${HOST_IP}
       PHP_IDE_CONFIG: serverName=totara73
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -385,6 +439,7 @@ services:
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - ./cron.d:/etc/cron.d
     networks:
       - totara
@@ -397,9 +452,12 @@ services:
       CONTAINERNAME: php-7.4
       TZ: ${TIME_ZONE}
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -418,9 +476,12 @@ services:
       XDEBUG_CONFIG: remote_host=${HOST_IP}
       PHP_IDE_CONFIG: serverName=totara74
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -435,6 +496,7 @@ services:
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - ./cron.d:/etc/cron.d
     networks:
       - totara
@@ -444,11 +506,15 @@ services:
     container_name: totara_php80
     working_dir: ${REMOTE_SRC}
     environment:
+      TZ: ${TIME_ZONE}
       CONTAINERNAME: php-8.0
       HIST_FILE: /root/.bash_history
+      REMOTE_SRC: ${REMOTE_SRC}
+      REMOTE_DATA: ${REMOTE_DATA}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - $HOME/.bash_history:/root/.bash_history
       - zsh-history:/root/.zsh_history
       - ./shell:/root/custom_shell
@@ -458,9 +524,12 @@ services:
   php-8.0-cron:
     image: totara/docker-dev-php80-cron
     container_name: totara_php80_cron
+    environment:
+      TZ: ${TIME_ZONE}
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
+      - ./shared_files:/shared_files
       - ./cron.d:/etc/cron.d
     networks:
       - totara

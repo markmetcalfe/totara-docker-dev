@@ -20,6 +20,8 @@ RUN apt-get update && apt-get install -y \
         tzdata \
         libmemcached-dev \
         zip \
+        ghostscript \
+        graphviz \
     && docker-php-ext-install -j$(nproc) xmlrpc \
         zip \
         intl \

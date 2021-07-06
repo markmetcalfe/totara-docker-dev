@@ -13,6 +13,7 @@ services:
       - "443:443"
       - "8443:8443" # ngrok only
     volumes:
+      - ./shared_files:/shared_files
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
     depends_on:

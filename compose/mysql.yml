@@ -12,6 +12,7 @@ services:
     depends_on:
       - nginx
     volumes:
+      - ./shared_files:/shared_files
       - mysql80-data:/var/lib/mysql
       - ./mysql8:/etc/mysql/conf.d
     networks:
@@ -28,6 +29,7 @@ services:
     depends_on:
       - nginx
     volumes:
+      - ./shared_files:/shared_files
       - mysql-data:/var/lib/mysql
     networks:
       - totara

@@ -109,6 +109,14 @@ services:
     volumes:
       - totara-www-sync:${REMOTE_SRC}:nocopy
 
+  php-8.0:
+    volumes:
+      - totara-www-sync:${REMOTE_SRC}:nocopy
+
+  php-8.0-cron:
+    volumes:
+      - totara-www-sync:${REMOTE_SRC}:nocopy
+
   nodejs:
     volumes:
       - totara-www-sync:${REMOTE_SRC}:nocopy

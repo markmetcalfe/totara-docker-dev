@@ -12,6 +12,7 @@ services:
       SA_PASSWORD: ${MSSQL_SA_PW}
       MSSQL_PID: Developer
     volumes:
+      - ./shared_files:/shared_files
       - mssql-data:/var/opt/mssql
     depends_on:
       - nginx

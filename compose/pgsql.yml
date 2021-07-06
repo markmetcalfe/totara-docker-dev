@@ -12,6 +12,7 @@ services:
     command:
       postgres -c 'config_file=/etc/postgresql/postgresql.conf'
     volumes:
+      - ./shared_files:/shared_files
       - ./pgsql/my-postgres.conf:/etc/postgresql/postgresql.conf
       - pgsql93-data:/var/lib/postgresql/data
     depends_on:
@@ -31,6 +32,7 @@ services:
     command:
       postgres -c 'config_file=/etc/postgresql/postgresql.conf'
     volumes:
+      - ./shared_files:/shared_files
       - ./pgsql/my-postgres.conf:/etc/postgresql/postgresql.conf
       - pgsql96-data:/var/lib/postgresql/data
     depends_on:
@@ -49,6 +51,7 @@ services:
     command:
       postgres -c 'config_file=/etc/postgresql/postgresql.conf'
     volumes:
+      - ./shared_files:/shared_files
       - ./pgsql/my-postgres.conf:/etc/postgresql/postgresql.conf
       - pgsql10-data:/var/lib/postgresql/data
     depends_on:
@@ -67,6 +70,7 @@ services:
     command:
       postgres -c 'config_file=/etc/postgresql/postgresql.conf'
     volumes:
+      - ./shared_files:/shared_files
       - ./pgsql/my-postgres.conf:/etc/postgresql/postgresql.conf
       - pgsql11-data:/var/lib/postgresql/data
     depends_on:
@@ -85,6 +89,7 @@ services:
     command:
       postgres -c 'config_file=/etc/postgresql/postgresql.conf'
     volumes:
+      - ./shared_files:/shared_files
       - ./pgsql/my-postgres.conf:/etc/postgresql/postgresql.conf
       - pgsql12-data:/var/lib/postgresql/data
     depends_on:
