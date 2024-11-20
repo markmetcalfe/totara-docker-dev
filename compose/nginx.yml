@@ -1,7 +1,7 @@
 services:
 
   nginx:
-    image: totara/docker-dev-nginx
+    image: ghcr.io/markmetcalfe/docker-dev-nginx
     container_name: totara_nginx
     environment:
       - TZ=${TIME_ZONE}

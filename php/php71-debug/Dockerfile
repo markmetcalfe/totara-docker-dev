@@ -1,4 +1,4 @@
-FROM totara/docker-dev-php71:latest
+FROM ghcr.io/markmetcalfe/docker-dev-php71:latest
 
 RUN pecl install -f xdebug-2.9.8 && docker-php-ext-enable xdebug.so
 RUN pecl install -f pcov && docker-php-ext-enable pcov.so

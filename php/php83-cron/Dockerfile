@@ -1,4 +1,4 @@
-FROM totara/docker-dev-php83:latest
+FROM ghcr.io/markmetcalfe/docker-dev-php83:latest
 
 RUN apt-get update && apt-get install -y cron
 
