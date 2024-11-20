@@ -1,7 +1,7 @@
 services:
 
   apache:
-    image: totara/docker-dev-apache
+    image: ghcr.io/totara/docker-dev-apache
     container_name: totara_apache
     environment:
       - TZ=${TIME_ZONE}
