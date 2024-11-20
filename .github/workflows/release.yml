@@ -6,40 +6,42 @@ on:
       - created
 
 jobs:
-  build-apache-image:
-    name: Build Apache image
-    uses: ./.github/workflows/build-image.yml
-    with:
-      image: apache
-      context: ./apache
-    secrets: inherit
+  # build-apache-image:
+  #   name: Build Apache image
+  #   uses: ./.github/workflows/build-image.yml
+  #   with:
+  #     image: apache
+  #     context: ./apache
+  #   secrets: inherit
 
-  build-nginx-image:
-    name: Build Nginx image
-    uses: ./.github/workflows/build-image.yml
-    with:
-      image: nginx
-      context: ./nginx
-    secrets: inherit
+  # build-nginx-image:
+  #   name: Build Nginx image
+  #   uses: ./.github/workflows/build-image.yml
+  #   with:
+  #     image: nginx
+  #     context: ./nginx
+  #   secrets: inherit
 
-  build-mssql-images:
-    name: Build MSSQL images
-    strategy:
-      matrix:
-        version: [2017, 2019, 2022]
-    uses: ./.github/workflows/build-image.yml
-    with:
-      image: mssql${{ matrix.version }}
-      context: ./mssql
-      dockerfile: ${{ matrix.version }}/Dockerfile
-      multiarch: false # Mssql does not support multiple architectures
-    secrets: inherit
+  # build-mssql-images:
+  #   name: Build MSSQL images
+  #   strategy:
+  #     matrix:
+  #       version: [2017, 2019, 2022]
+  #     fail-fast: false
+  #   uses: ./.github/workflows/build-image.yml
+  #   with:
+  #     image: mssql${{ matrix.version }}
+  #     context: ./mssql
+  #     dockerfile: ${{ matrix.version }}/Dockerfile
+  #     multiarch: false # Mssql does not support multiple architectures
+  #   secrets: inherit
 
   build-php-images:
     name: Build PHP base images
     strategy:
       matrix:
         version: [53, 54, 55, 56, 70, 71, 72, 73, 80, 81, 82, 83]
+      fail-fast: false
     uses: ./.github/workflows/build-image.yml
     with:
       image: php${{ matrix.version }}
@@ -52,6 +54,7 @@ jobs:
     strategy:
       matrix:
         version: [53, 54, 55, 56, 70, 71, 72, 73, 80, 81, 82, 83]
+      fail-fast: false
     uses: ./.github/workflows/build-image.yml
     with:
       image: php${{ matrix.version }}-debug
@@ -65,6 +68,7 @@ jobs:
       matrix:
         # Note: no cron container for v5.3
         version: [54, 55, 56, 70, 71, 72, 73, 80, 81, 82, 83]
+      fail-fast: false
     uses: ./.github/workflows/build-image.yml
     with:
       image: php${{ matrix.version }}-cron
