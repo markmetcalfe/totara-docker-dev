@@ -1,4 +1,4 @@
-FROM totara/docker-dev-php-base:latest
+FROM ghcr.io/markmetcalfe/docker-dev-php-base:latest
 
 # This is the PHP version we want to install
 ENV PHPVERSION 5.5.38
