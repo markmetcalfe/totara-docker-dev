@@ -1,4 +1,6 @@
-FROM totara/docker-dev-php83:latest
+ARG BASE_IMAGE=ghcr.io/totara/docker-dev-php83
+
+FROM $BASE_IMAGE:latest
 
 RUN pecl install -f xdebug-3.4.0beta1 && docker-php-ext-enable xdebug.so
 RUN pecl install -f pcov && docker-php-ext-enable pcov.so

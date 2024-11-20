@@ -1,7 +1,7 @@
 services:
 
   php-5.3:
-    image: totara/docker-dev-php53
+    image: ghcr.io/totara/docker-dev-php53
     container_name: totara_php53
     working_dir: ${REMOTE_SRC}
     environment:
@@ -21,7 +21,7 @@ services:
       - totara
 
   php-5.3-debug:
-    image: totara/docker-dev-php53-debug
+    image: ghcr.io/totara/docker-dev-php53-debug
     container_name: totara_php53_debug
     working_dir: ${REMOTE_SRC}
     environment:
@@ -41,7 +41,7 @@ services:
       - totara
 
   php-5.4:
-    image: totara/docker-dev-php54
+    image: ghcr.io/totara/docker-dev-php54
     container_name: totara_php54
     working_dir: ${REMOTE_SRC}
     environment:
@@ -61,7 +61,7 @@ services:
       - totara
 
   php-5.4-debug:
-    image: totara/docker-dev-php54-debug
+    image: ghcr.io/totara/docker-dev-php54-debug
     container_name: totara_php54_debug
     working_dir: ${REMOTE_SRC}
     environment:
@@ -81,7 +81,7 @@ services:
       - totara
 
   php-5.4-cron:
-    image: totara/docker-dev-php54-cron
+    image: ghcr.io/totara/docker-dev-php54-cron
     container_name: totara_php54_cron
     environment:
       TZ: ${TIME_ZONE}
@@ -93,7 +93,7 @@ services:
       - totara
 
   php-5.5:
-    image: totara/docker-dev-php55
+    image: ghcr.io/totara/docker-dev-php55
     container_name: totara_php55
     working_dir: ${REMOTE_SRC}
     environment:
@@ -113,7 +113,7 @@ services:
       - totara
 
   php-5.5-debug:
-    image: totara/docker-dev-php55-debug
+    image: ghcr.io/totara/docker-dev-php55-debug
     container_name: totara_php55_debug
     working_dir: ${REMOTE_SRC}
     environment:
@@ -133,7 +133,7 @@ services:
       - totara
 
   php-5.5-cron:
-    image: totara/docker-dev-php55-cron
+    image: ghcr.io/totara/docker-dev-php55-cron
     container_name: totara_php55_cron
     environment:
       TZ: ${TIME_ZONE}
@@ -145,7 +145,7 @@ services:
       - totara
 
   php-5.6:
-    image: totara/docker-dev-php56
+    image: ghcr.io/totara/docker-dev-php56
     container_name: totara_php56
     working_dir: ${REMOTE_SRC}
     environment:
@@ -165,7 +165,7 @@ services:
       - totara
 
   php-5.6-debug:
-    image: totara/docker-dev-php56-debug
+    image: ghcr.io/totara/docker-dev-php56-debug
     container_name: totara_php56_debug
     working_dir: ${REMOTE_SRC}
     environment:
@@ -185,7 +185,7 @@ services:
       - totara
 
   php-5.6-cron:
-    image: totara/docker-dev-php56-cron
+    image: ghcr.io/totara/docker-dev-php56-cron
     container_name: totara_php56_cron
     environment:
       TZ: ${TIME_ZONE}
@@ -197,7 +197,7 @@ services:
       - totara
 
   php-7.0:
-    image: totara/docker-dev-php70
+    image: ghcr.io/totara/docker-dev-php70
     container_name: totara_php70
     working_dir: ${REMOTE_SRC}
     environment:
@@ -217,7 +217,7 @@ services:
       - totara
 
   php-7.0-debug:
-    image: totara/docker-dev-php70-debug
+    image: ghcr.io/totara/docker-dev-php70-debug
     container_name: totara_php70_debug
     working_dir: ${REMOTE_SRC}
     environment:
@@ -237,7 +237,7 @@ services:
       - totara
 
   php-7.0-cron:
-    image: totara/docker-dev-php70-cron
+    image: ghcr.io/totara/docker-dev-php70-cron
     container_name: totara_php70_cron
     environment:
       TZ: ${TIME_ZONE}
@@ -249,7 +249,7 @@ services:
       - totara
 
   php-7.1:
-    image: totara/docker-dev-php71
+    image: ghcr.io/totara/docker-dev-php71
     container_name: totara_php71
     working_dir: ${REMOTE_SRC}
     environment:
@@ -269,7 +269,7 @@ services:
       - totara
 
   php-7.1-debug:
-    image: totara/docker-dev-php71-debug
+    image: ghcr.io/totara/docker-dev-php71-debug
     container_name: totara_php71_debug
     working_dir: ${REMOTE_SRC}
     environment:
@@ -289,7 +289,7 @@ services:
       - totara
 
   php-7.1-cron:
-    image: totara/docker-dev-php71-cron
+    image: ghcr.io/totara/docker-dev-php71-cron
     container_name: totara_php71_cron
     environment:
       TZ: ${TIME_ZONE}
@@ -301,7 +301,7 @@ services:
       - totara
 
   php-7.2:
-    image: totara/docker-dev-php72
+    image: ghcr.io/totara/docker-dev-php72
     container_name: totara_php72
     working_dir: ${REMOTE_SRC}
     environment:
@@ -321,7 +321,7 @@ services:
       - totara
 
   php-7.2-debug:
-    image: totara/docker-dev-php72-debug
+    image: ghcr.io/totara/docker-dev-php72-debug
     container_name: totara_php72_debug
     working_dir: ${REMOTE_SRC}
     environment:
@@ -342,7 +342,7 @@ services:
       - totara
 
   php-7.2-cron:
-    image: totara/docker-dev-php72-cron
+    image: ghcr.io/totara/docker-dev-php72-cron
     container_name: totara_php72_cron
     environment:
       TZ: ${TIME_ZONE}
@@ -354,7 +354,7 @@ services:
       - totara
 
   php-7.3:
-    image: totara/docker-dev-php73
+    image: ghcr.io/totara/docker-dev-php73
     container_name: totara_php73
     working_dir: ${REMOTE_SRC}
     environment:
@@ -374,7 +374,7 @@ services:
       - totara
 
   php-7.3-debug:
-    image: totara/docker-dev-php73-debug
+    image: ghcr.io/totara/docker-dev-php73-debug
     container_name: totara_php73_debug
     working_dir: ${REMOTE_SRC}
     environment:
@@ -395,7 +395,7 @@ services:
       - totara
 
   php-7.3-cron:
-    image: totara/docker-dev-php73-cron
+    image: ghcr.io/totara/docker-dev-php73-cron
     container_name: totara_php73_cron
     environment:
       TZ: ${TIME_ZONE}
@@ -407,7 +407,7 @@ services:
       - totara
 
   php-7.4:
-    image: totara/docker-dev-php74
+    image: ghcr.io/totara/docker-dev-php74
     container_name: totara_php74
     working_dir: ${REMOTE_SRC}
     environment:
@@ -427,7 +427,7 @@ services:
       - totara
 
   php-7.4-debug:
-    image: totara/docker-dev-php74-debug
+    image: ghcr.io/totara/docker-dev-php74-debug
     container_name: totara_php74_debug
     working_dir: ${REMOTE_SRC}
     environment:
@@ -448,7 +448,7 @@ services:
       - totara
 
   php-7.4-cron:
-    image: totara/docker-dev-php74-cron
+    image: ghcr.io/totara/docker-dev-php74-cron
     container_name: totara_php74_cron
     environment:
       TZ: ${TIME_ZONE}
@@ -460,7 +460,7 @@ services:
       - totara
 
   php-8.0:
-    image: totara/docker-dev-php80
+    image: ghcr.io/totara/docker-dev-php80
     container_name: totara_php80
     working_dir: ${REMOTE_SRC}
     environment:
@@ -479,7 +479,7 @@ services:
       - totara
 
   php-8.0-debug:
-    image: totara/docker-dev-php80-debug
+    image: ghcr.io/totara/docker-dev-php80-debug
     container_name: totara_php80_debug
     working_dir: ${REMOTE_SRC}
     environment:
@@ -500,7 +500,7 @@ services:
       - totara
 
   php-8.0-cron:
-    image: totara/docker-dev-php80-cron
+    image: ghcr.io/totara/docker-dev-php80-cron
     container_name: totara_php80_cron
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
@@ -510,7 +510,7 @@ services:
       - totara
 
   php-8.1:
-    image: totara/docker-dev-php81
+    image: ghcr.io/totara/docker-dev-php81
     container_name: totara_php81
     working_dir: ${REMOTE_SRC}
     environment:
@@ -529,7 +529,7 @@ services:
       - totara
 
   php-8.1-cron:
-    image: totara/docker-dev-php81-cron
+    image: ghcr.io/totara/docker-dev-php81-cron
     container_name: totara_php81_cron
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
@@ -539,7 +539,7 @@ services:
       - totara
 
   php-8.1-debug:
-    image: totara/docker-dev-php81-debug
+    image: ghcr.io/totara/docker-dev-php81-debug
     container_name: totara_php81_debug
     working_dir: ${REMOTE_SRC}
     environment:
@@ -560,7 +560,7 @@ services:
       - totara
 
   php-8.2:
-    image: totara/docker-dev-php82
+    image: ghcr.io/totara/docker-dev-php82
     container_name: totara_php82
     working_dir: ${REMOTE_SRC}
     environment:
@@ -579,7 +579,7 @@ services:
       - totara
 
   php-8.2-cron:
-    image: totara/docker-dev-php82-cron
+    image: ghcr.io/totara/docker-dev-php82-cron
     container_name: totara_php82_cron
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
@@ -589,7 +589,7 @@ services:
       - totara
 
   php-8.2-debug:
-    image: totara/docker-dev-php82-debug
+    image: ghcr.io/totara/docker-dev-php82-debug
     container_name: totara_php82_debug
     working_dir: ${REMOTE_SRC}
     environment:
@@ -610,7 +610,7 @@ services:
       - totara
 
   php-8.3:
-    image: totara/docker-dev-php83
+    image: ghcr.io/totara/docker-dev-php83
     container_name: totara_php83
     working_dir: ${REMOTE_SRC}
     environment:
@@ -629,7 +629,7 @@ services:
       - totara
 
   php-8.3-cron:
-    image: totara/docker-dev-php83-cron
+    image: ghcr.io/totara/docker-dev-php83-cron
     container_name: totara_php83_cron
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
@@ -639,7 +639,7 @@ services:
       - totara
 
   php-8.3-debug:
-    image: totara/docker-dev-php83-debug
+    image: ghcr.io/totara/docker-dev-php83-debug
     container_name: totara_php83_debug
     working_dir: ${REMOTE_SRC}
     environment:
