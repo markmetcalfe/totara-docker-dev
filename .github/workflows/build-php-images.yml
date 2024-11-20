@@ -18,19 +18,19 @@ on:
         default: true
 
 jobs:
-  build-php-image:
-    name: Build PHP ${{ inputs.version }} image
-    uses: ./.github/workflows/build-image.yml
-    with:
-      image: php${{ inputs.version }}
-      context: ./php/php${{ inputs.version }}
-      multiarch: ${{ inputs.multiarch }}
-    secrets: inherit
+  # build-php-image:
+  #   name: Build PHP ${{ inputs.version }} image
+  #   uses: ./.github/workflows/build-image.yml
+  #   with:
+  #     image: php${{ inputs.version }}
+  #     context: ./php/php${{ inputs.version }}
+  #     multiarch: ${{ inputs.multiarch }}
+  #   secrets: inherit
 
   build-php-debug-image:
     name: Build PHP ${{ inputs.version }} debug image
     if: ${{ inputs.debug == true }}
-    needs: build-php-image
+    # needs: build-php-image
     uses: ./.github/workflows/build-image.yml
     with:
       image: php${{ inputs.version }}-debug
@@ -41,7 +41,7 @@ jobs:
   build-php-cron-image:
     name: Build cron image
     if: ${{ inputs.cron == true }}
-    needs: build-php-image
+    # needs: build-php-image
     uses: ./.github/workflows/build-image.yml
     with:
       image: php${{ inputs.version }}-cron
