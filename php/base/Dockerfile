@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:22.04
 
 ARG TIME_ZONE=Pacific/Auckland
 
@@ -60,11 +60,11 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libxml2-dev \
     libxslt1-dev \
     openssl \
-    php7.0 \
-    php7.0-cgi \
-    php7.0-curl \
-    php7.0-fpm \
-    php7.0-json \
+    php8.3 \
+    php8.3-cgi \
+    php8.3-curl \
+    php8.3-fpm \
+    php8.3-json \
     && rm -rf /var/lib/apt/lists/*
 
 # Install phpbrew
