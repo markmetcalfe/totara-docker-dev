@@ -1,7 +1,6 @@
 name: Build docker-dev images upon a new release
 
 on:
-  push:
   release:
     types:
       - created
@@ -48,8 +47,8 @@ jobs:
       version: ${{ matrix.version }}
     secrets: inherit
 
-  # build-eol-php-base-image:
-  #   name: Build end-of-life PHP base image
+  # build-legacy-php-base-image:
+  #   name: Build legacy PHP base image
   #   uses: ./.github/workflows/build-image.yml
   #   with:
   #     image: php-base
@@ -57,9 +56,9 @@ jobs:
   #     multiarch: false
   #   secrets: inherit
 
-  # build-eol-php-images:
-  #   name: Build end-of-life PHP images
-  #   # needs: build-eol-php-base-image
+  # build-legacy-php-images:
+  #   name: Build legacy PHP images
+  #   needs: build-legacy-php-base-image
   #   uses: ./.github/workflows/build-php-images.yml
   #   strategy:
   #     fail-fast: false

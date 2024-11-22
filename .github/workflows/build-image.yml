@@ -41,7 +41,6 @@ jobs:
           # Adds tags for 'x.x.x' release version and 'multiarch' if multiarch
           tags: |
             type=semver,pattern={{version}}
-            type=raw,test
             ${{ inputs.multiarch == true && 'type=raw,multiarch' || '' }}
       - name: Set up QEMU (to support building for both amd64 and arm64)
         if: ${{ inputs.multiarch == true }}
