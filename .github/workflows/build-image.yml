@@ -34,7 +34,7 @@ jobs:
         id: prev-tag
         if: inputs.build-changes-only == true
         run: |
-          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^)
+          PREV_TAG=$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))
           echo "previous_tag=$PREV_TAG" >> $GITHUB_ENV
 
       - name: Check for changes in build directory
