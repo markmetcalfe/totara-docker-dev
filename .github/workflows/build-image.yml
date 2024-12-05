@@ -30,19 +30,13 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Get previous release tag
-        id: prev-tag
-        if: inputs.build-changes-only == true
-        run: |
-          PREV_TAG=$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))
-          echo "previous_tag=$PREV_TAG" >> $GITHUB_ENV
-
       - name: Check for changes in build directory
         id: check-changes
         if: inputs.build-changes-only == true
         run: |
+          PREV_TAG=$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))
           git fetch --tags
-          if git diff --name-only ${{ env.previous_tag }} HEAD | grep '${{ inputs.context }}/'; then
+          if git diff --name-only $PREV_TAG HEAD | grep '${{ inputs.context }}/'; then
             echo "has_changes=true" >> $GITHUB_ENV
           else
             echo "has_changes=false" >> $GITHUB_ENV
