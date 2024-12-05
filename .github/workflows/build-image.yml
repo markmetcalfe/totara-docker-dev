@@ -43,7 +43,7 @@ jobs:
         run: |
           echo $PREV_TAG
           echo "${{ env.previous_tag }}"
-          git fetch --tags
+          git fetch --tags > /dev/null
           CHANGED_FILES=$(git diff --name-only $PREV_TAG HEAD)
           echo "$CHANGED_FILES" > changed_files.txt
           cat changed_files.txt
