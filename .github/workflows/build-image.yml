@@ -42,9 +42,7 @@ jobs:
         if: inputs.build-changes-only == true
         run: |
           git fetch --tags
-          CHANGED_FILES=$(git diff --name-only ${{ env.previous_tag }} HEAD)
-          echo "$CHANGED_FILES" > changed_files.txt
-          if grep -q '${{ inputs.context }}/' changed_files.txt; then
+          if git diff --name-only ${{ env.previous_tag }} HEAD | grep '${{ inputs.context }}/'; then
             echo "has_changes=true" >> $GITHUB_ENV
           else
             echo "has_changes=false" >> $GITHUB_ENV
