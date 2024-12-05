@@ -27,7 +27,7 @@ jobs:
     uses: ./.github/workflows/build-image.yml
     with:
       image: php${{ inputs.version }}
-      context: ./php/php${{ inputs.version }}
+      context: php/php${{ inputs.version }}
       multiarch: ${{ inputs.multiarch }}
       build-changes-only: ${{ inputs.build-changes-only }}
     secrets: inherit
@@ -39,7 +39,7 @@ jobs:
     uses: ./.github/workflows/build-image.yml
     with:
       image: php${{ inputs.version }}-debug
-      context: ./php/php${{ inputs.version }}-debug
+      context: php/php${{ inputs.version }}-debug
       multiarch: ${{ inputs.multiarch }}
       build-changes-only: false
     secrets: inherit
@@ -51,7 +51,7 @@ jobs:
     uses: ./.github/workflows/build-image.yml
     with:
       image: php${{ inputs.version }}-cron
-      context: ./php/php${{ inputs.version }}-cron
+      context: php/php${{ inputs.version }}-cron
       multiarch: ${{ inputs.multiarch }}
       build-changes-only: false
     secrets: inherit

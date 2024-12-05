@@ -11,7 +11,7 @@ jobs:
     uses: ./.github/workflows/build-image.yml
     with:
       image: apache
-      context: ./apache
+      context: apache
       build-changes-only: true
     secrets: inherit
 
@@ -20,7 +20,7 @@ jobs:
     uses: ./.github/workflows/build-image.yml
     with:
       image: nginx
-      context: ./nginx
+      context: nginx
       build-changes-only: true
     secrets: inherit
 
@@ -32,7 +32,7 @@ jobs:
     uses: ./.github/workflows/build-image.yml
     with:
       image: mssql${{ matrix.version }}
-      context: ./mssql
+      context: mssql
       dockerfile: ${{ matrix.version }}/Dockerfile
       multiarch: false # Mssql does not support multiple architectures
       build-changes-only: true

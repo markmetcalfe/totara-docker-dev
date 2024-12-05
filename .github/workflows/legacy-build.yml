@@ -9,7 +9,7 @@ jobs:
     uses: ./.github/workflows/build-image.yml
     with:
       image: php-base
-      context: ./php/base
+      context: php/base
       multiarch: false
       build-changes-only: false
     secrets: inherit
