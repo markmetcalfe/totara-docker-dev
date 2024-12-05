@@ -23,7 +23,7 @@ on:
 
 jobs:
   build-php-image:
-    name: Build PHP ${{ inputs.version }} image
+    name: Build base image
     uses: ./.github/workflows/build-image.yml
     with:
       image: php${{ inputs.version }}
@@ -33,7 +33,7 @@ jobs:
     secrets: inherit
 
   build-php-debug-image:
-    name: Build PHP ${{ inputs.version }} debug image
+    name: Build debug image
     if: ${{ inputs.debug == true && needs.build-php-image.outputs.has-changes == 'true' }}
     needs: build-php-image
     uses: ./.github/workflows/build-image.yml
