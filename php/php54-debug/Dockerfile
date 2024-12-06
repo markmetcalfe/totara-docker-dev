@@ -1,4 +1,4 @@
-FROM totara/docker-dev-php54:latest
+FROM ghcr.io/markmetcalfe/docker-dev-php54:latest
 
 RUN phpbrew ext install xdebug 2.4.1
 
