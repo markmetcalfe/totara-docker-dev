@@ -37,11 +37,11 @@ jobs:
         if: inputs.build-changes-only == true
         run: |
           PREV_TAG=$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))
+          HAS_CHANGES=false
           if git diff --name-only $PREV_TAG HEAD | grep '${{ inputs.context }}/'; then
-            echo "has-changes=true" >> $GITHUB_OUTPUT
-          else
-            echo "has-changes=false" >> $GITHUB_OUTPUT
+            HAS_CHANGES=true
           fi
+          echo "::set-output name=has-changes::${{ toJSON($HAS_CHANGES) }}"
 
       - name: Log in to Docker Hub
         if: inputs.build-changes-only == false || steps.check-changes.outputs.has-changes
