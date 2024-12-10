@@ -39,8 +39,6 @@ jobs:
           PREV_TAG=$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))
           if git diff --name-only $PREV_TAG HEAD | grep '${{ inputs.context }}/'; then
             echo "::set-output name=has-changes::true"
-          else
-            echo "::set-output name=has-changes::false"
           fi
 
       - name: Log in to Docker Hub
