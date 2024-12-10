@@ -34,8 +34,8 @@ jobs:
 
   build-php-debug-image:
     name: Build debug image
-    if: ${{ inputs.debug == true && needs.build-php-image.outputs.has-changes == 'true' }}
     needs: build-php-image
+    if: ${{ inputs.debug == true && needs.build-php-image.outputs.has-changes == 'true' }}
     uses: ./.github/workflows/build-image.yml
     with:
       image: php${{ inputs.version }}-debug
@@ -46,8 +46,8 @@ jobs:
 
   build-php-cron-image:
     name: Build cron image
-    if: ${{ inputs.cron == true && needs.build-php-image.outputs.has-changes == 'true' }}
     needs: build-php-image
+    if: ${{ inputs.cron == true && needs.build-php-image.outputs.has-changes == 'true' }}
     uses: ./.github/workflows/build-image.yml
     with:
       image: php${{ inputs.version }}-cron
