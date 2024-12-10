@@ -1,4 +1,4 @@
-FROM totara/docker-dev-php56:latest
+FROM ghcr.io/markmetcalfe/docker-dev-php56:latest
 
 COPY pecl /root/pecl
 

@@ -1,0 +1,51 @@
+name: Build docker-dev images upon a new release
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  build-apache-image:
+    name: Build Apache image
+    uses: ./.github/workflows/build-image.yml
+    with:
+      image: apache
+      context: apache
+      build-changes-only: true
+    secrets: inherit
+
+  build-nginx-image:
+    name: Build Nginx image
+    uses: ./.github/workflows/build-image.yml
+    with:
+      image: nginx
+      context: nginx
+      build-changes-only: true
+    secrets: inherit
+
+  build-mssql-images:
+    name: Build MSSQL images
+    strategy:
+      matrix:
+        version: [2017, 2019, 2022]
+    uses: ./.github/workflows/build-image.yml
+    with:
+      image: mssql${{ matrix.version }}
+      context: mssql
+      dockerfile: ${{ matrix.version }}/Dockerfile
+      multiarch: false # Mssql does not support multiple architectures
+      build-changes-only: true
+    secrets: inherit
+
+  build-php-images:
+    name: Build PHP images
+    uses: ./.github/workflows/build-php-images.yml
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [73, 74, 80, 81, 82, 83]
+    with:
+      version: ${{ matrix.version }}
+      build-changes-only: true
+    secrets: inherit
