@@ -1,4 +1,4 @@
-FROM totara/docker-dev-php70:latest
+FROM ghcr.io/markmetcalfe/docker-dev-php70:latest
 
 RUN pecl install -f xdebug-2.7.2 && docker-php-ext-enable xdebug.so
 
