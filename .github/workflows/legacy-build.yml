@@ -2,6 +2,10 @@ name: Manually build legacy images
 
 on:
   workflow_dispatch:
+    inputs:
+      build-changes-only:
+        type: boolean
+        description: Build only images that have been changed
 
 jobs:
   build-legacy-php-base-image:
@@ -11,7 +15,7 @@ jobs:
       image: php-base
       context: php/base
       multiarch: false
-      build-changes-only: false
+      build-changes-only: ${{ github.event.inputs.build-changes-only || false }}
     secrets: inherit
 
   build-legacy-php-images:
@@ -26,5 +30,5 @@ jobs:
       version: ${{ matrix.version }}
       cron: ${{ matrix.version != 53 }} # 5.3 doesn't have a cron container
       multiarch: false
-      build-changes-only: false
+      build-changes-only: ${{ github.event.inputs.build-changes-only || false }}
     secrets: inherit

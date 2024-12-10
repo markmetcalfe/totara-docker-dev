@@ -5,6 +5,10 @@ on:
     types:
       - created
   workflow_dispatch:
+    inputs:
+      build-changes-only:
+        type: boolean
+        description: Build only images that have been changed
 
 jobs:
   build-apache-image:
@@ -13,7 +17,7 @@ jobs:
     with:
       image: apache
       context: apache
-      build-changes-only: true
+      build-changes-only: ${{ github.event.inputs.build-changes-only || false }}
     secrets: inherit
 
   build-nginx-image:
@@ -22,7 +26,7 @@ jobs:
     with:
       image: nginx
       context: nginx
-      build-changes-only: true
+      build-changes-only: ${{ github.event.inputs.build-changes-only || false }}
     secrets: inherit
 
   build-mssql-images:
@@ -36,7 +40,7 @@ jobs:
       context: mssql
       dockerfile: ${{ matrix.version }}/Dockerfile
       multiarch: false # Mssql does not support multiple architectures
-      build-changes-only: true
+      build-changes-only: ${{ github.event.inputs.build-changes-only || false }}
     secrets: inherit
 
   build-php-images:
@@ -48,5 +52,5 @@ jobs:
         version: [73, 74, 80, 81, 82, 83]
     with:
       version: ${{ matrix.version }}
-      build-changes-only: true
+      build-changes-only: ${{ github.event.inputs.build-changes-only || false }}
     secrets: inherit
