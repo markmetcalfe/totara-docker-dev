@@ -16,35 +16,42 @@ on:
         required: false
         type: boolean
         default: true
+      build-changes-only:
+        required: true
+        type: boolean
+        default: false
 
 jobs:
   build-php-image:
-    name: Build PHP ${{ inputs.version }} image
+    name: Build base image
     uses: ./.github/workflows/build-image.yml
     with:
       image: php${{ inputs.version }}
-      context: ./php/php${{ inputs.version }}
+      context: php/php${{ inputs.version }}
       multiarch: ${{ inputs.multiarch }}
+      build-changes-only: ${{ inputs.build-changes-only }}
     secrets: inherit
 
   build-php-debug-image:
-    name: Build PHP ${{ inputs.version }} debug image
-    if: ${{ inputs.debug == true }}
+    name: Build debug image
+    if: ${{ inputs.debug == true && needs.build-php-image.outputs.has-changes == 'true' }}
     needs: build-php-image
     uses: ./.github/workflows/build-image.yml
     with:
       image: php${{ inputs.version }}-debug
-      context: ./php/php${{ inputs.version }}-debug
+      context: php/php${{ inputs.version }}-debug
       multiarch: ${{ inputs.multiarch }}
+      build-changes-only: false
     secrets: inherit
 
   build-php-cron-image:
     name: Build cron image
-    if: ${{ inputs.cron == true }}
+    if: ${{ inputs.cron == true && needs.build-php-image.outputs.has-changes == 'true' }}
     needs: build-php-image
     uses: ./.github/workflows/build-image.yml
     with:
       image: php${{ inputs.version }}-cron
-      context: ./php/php${{ inputs.version }}-cron
+      context: php/php${{ inputs.version }}-cron
       multiarch: ${{ inputs.multiarch }}
+      build-changes-only: false
     secrets: inherit
