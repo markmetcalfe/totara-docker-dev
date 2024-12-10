@@ -27,13 +27,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0 # Fetch all history including tags
 
       - name: Check for changes in build directory
         id: check-changes
         if: inputs.build-changes-only == true
         run: |
           PREV_TAG=$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))
-          git fetch --tags
           if git diff --name-only $PREV_TAG HEAD | grep '${{ inputs.context }}/'; then
             echo "has_changes=true" >> $GITHUB_ENV
           else
