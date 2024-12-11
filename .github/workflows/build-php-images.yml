@@ -41,7 +41,7 @@ jobs:
       image: php${{ inputs.version }}-debug
       context: php/php${{ inputs.version }}-debug
       multiarch: ${{ inputs.multiarch }}
-      build-changes-only: false
+      build-changes-only: false # debug container is dependent on the base image so always build it
     secrets: inherit
 
   build-php-cron-image:
@@ -53,5 +53,5 @@ jobs:
       image: php${{ inputs.version }}-cron
       context: php/php${{ inputs.version }}-cron
       multiarch: ${{ inputs.multiarch }}
-      build-changes-only: false
+      build-changes-only: false # cron container is dependent on the base image so always build it
     secrets: inherit
