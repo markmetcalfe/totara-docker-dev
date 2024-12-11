@@ -19,10 +19,10 @@ on:
         required: true
         type: boolean
         default: true
-        outputs:
-    has-changes:
-      description: Whether the image had changes it's build directory
-      value: ${{ jobs.build-image.outputs.has-changes }}
+    outputs:
+      has-changes:
+        description: Whether the image had changes it's build directory
+        value: ${{ jobs.build-image.outputs.has-changes }}
 
 jobs:
   build-image:
