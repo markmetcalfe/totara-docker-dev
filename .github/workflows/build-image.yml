@@ -29,7 +29,7 @@ jobs:
     name: Build ${{ inputs.image }} image
     runs-on: ubuntu-latest
     outputs:
-      has_changes: ${{ needs.build-php-image.outputs.has-changes }}
+      has_changes: ${{ steps.check-changes.outputs.has-changes }}
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
