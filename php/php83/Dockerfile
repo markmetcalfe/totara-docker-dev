@@ -119,4 +119,4 @@ RUN echo 'setopt +o nomatch' > ~/.zshrc
 RUN echo 'source ~/custom_shell/.zshrc' >> ~/.zshrc
 RUN cat ~/.bashrc >> ~/.zshrc
 
-RUN echo "aaaa22333334512312123312123asdasdasdasdasasdasdasdasdd1asasddasdasd231233"
+RUN echo "aaaa22333334512312123312123asdasdasdasdasasdasdasdasdd1asasdasddasdasd231233"
