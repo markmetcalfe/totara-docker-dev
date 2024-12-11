@@ -42,11 +42,11 @@ jobs:
         run: |
           PREV_TAG=$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))
           if git diff --name-only $PREV_TAG HEAD | grep '${{ inputs.context }}/'; then
-            echo "::set-output name=has-changes::true"
+            echo "has-changes=true" >> $GITHUB_OUTPUT
           fi
 
       - name: Log in to Docker Hub
-        if: inputs.build-changes-only == false || needs.build-php-image.outputs.has-changes
+        if: inputs.build-changes-only == false || steps.check-changes.outputs.has-changes
         uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
         with:
           registry: ghcr.io
@@ -55,7 +55,7 @@ jobs:
 
       # - name: Extract metadata (tags, labels) for Docker
       #   id: meta
-      #   if: inputs.build-changes-only == false || needs.build-php-image.outputs.has-changes
+      #   if: inputs.build-changes-only == false || steps.check-changes.outputs.has-changes
       #   uses: docker/metadata-action@369eb591f429131d6889c46b94e711f089e6ca96 # v5.6.1
       #   with:
       #     images: ghcr.io/markmetcalfe/docker-dev-${{ inputs.image }}
@@ -65,17 +65,17 @@ jobs:
       #       ${{ inputs.multiarch && 'type=raw,multiarch' || '' }}
 
       # - name: Set up QEMU (to support building for both amd64 and arm64)
-      #   if: inputs.build-changes-only == false || needs.build-php-image.outputs.has-changes && inputs.multiarch
+      #   if: inputs.build-changes-only == false || steps.check-changes.outputs.has-changes && inputs.multiarch
       #   uses: docker/setup-qemu-action@49b3bc8e6bdd4a60e6116a5414239cba5943d3cf # v3.2.0
 
       # - name: Set up Docker Buildx
-      #   if: inputs.build-changes-only == false || needs.build-php-image.outputs.has-changes
+      #   if: inputs.build-changes-only == false || steps.check-changes.outputs.has-changes
       #   uses: docker/setup-buildx-action@c47758b77c9736f4b2ef4073d4d51994fabfe349 # v3.7.1
       #   with:
       #     platforms: ${{ inputs.multiarch && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
 
       # - name: Build and push images
-      #   if: inputs.build-changes-only == false || needs.build-php-image.outputs.has-changes
+      #   if: inputs.build-changes-only == false || steps.check-changes.outputs.has-changes
       #   uses: docker/build-push-action@4f58ea79222b3b9dc2c8bbdd6debcef730109a75 # v6.9.0
       #   with:
       #     context: ./${{ inputs.context }}
