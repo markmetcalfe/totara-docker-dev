@@ -1,0 +1,29 @@
+name: Build PHP images
+
+on:
+  release:
+    types:
+      - created
+  pull_request:
+    branches:
+      - master
+      - develop
+    paths:
+      - php/**
+
+jobs:
+  build-php-images:
+    name: Build PHP images
+    uses: ./.github/workflows/build-image.yml
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
+    with:
+      image: php${{ replace(matrix.version, '.', '') }}
+      context: ./php
+      dockerfile: php${{ replace(matrix.version, '.', '') }}/Dockerfile
+      push: ${{ github.event_name == 'release' }}
+      compose-container: php-${{ matrix.version }}
+      test-command: php -v
+    secrets: inherit
