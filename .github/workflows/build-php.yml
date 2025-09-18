@@ -18,7 +18,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
+        # version: ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
+        version: ['7.3'] # TESTING ONLY - REMOVE BEFORE MERGING
     with:
       image: php${{ replace(matrix.version, '.', '') }}
       context: ./php
@@ -26,4 +27,5 @@ jobs:
       push: ${{ github.event_name == 'release' }}
       compose-container: php-${{ matrix.version }}
       test-command: php -v
+      multiarch: false # TESTING ONLY - REMOVE BEFORE MERGING
     secrets: inherit
