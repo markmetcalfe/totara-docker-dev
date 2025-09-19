@@ -16,10 +16,4 @@ fi
 # set dataroot permissions
 chown www-data:www-data $REMOTE_DATA -R
 
-# Replace the remote src variable in the apache configuration with
-# the one defined in the environment variables
-cp /usr/local/apache2/conf.d/server.conf /tmp/temp.conf
-envsubst '$REMOTE_SRC' < /tmp/temp.conf > /usr/local/apache2/conf.d/server.conf
-rm /tmp/temp.conf
-
 httpd -D "FOREGROUND" -k start
