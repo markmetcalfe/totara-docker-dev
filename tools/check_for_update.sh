@@ -6,6 +6,8 @@ if [[ -z "$LOCAL_SRC" ]]; then
     set -a; source "$project_path/.env"; set +a
 fi
 
+source "$project_path/tools/shell_utils.sh"
+
 # We don't want to update it if:
 # * Automatic updating is disabled in .env
 # * The current user doesn't have write permissions nor owns the docker-dev directory
@@ -57,7 +59,7 @@ if [[ "$current_version_hash" == "$latest_version_hash" ]]; then
     return &> /dev/null || exit
 fi
 
-echo "\033[1;35mThere is a newer version of totara-docker-dev available!\033[0m"
+echo_important "There is a newer version of totara-docker-dev available!"
 echo "Updating will stop all running containers, pulling new container images and then restart your services."
 read -p "Would you like to update? [Y/n] " confirm
 if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then

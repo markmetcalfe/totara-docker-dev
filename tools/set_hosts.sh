@@ -4,7 +4,9 @@ script_path=$( cd "$(dirname $0)" || exit; pwd -P )
 project_path=$( cd "$script_path" && cd ..; pwd -P )
 set -a; source "$project_path/.env"; set +a
 
-echo -e "\x1B[31mNote: This script is deprecated and will be removed in a future version.\nPlease instead visit your sites by adding .localhost to the domain.\nFor example: http://integration.totara83.localhost\x1B[0m\n"
+source "$project_path/tools/shell_utils.sh"
+
+echo_warning "Note: This script is deprecated and will be removed in a future version.\nPlease instead visit your sites by adding .localhost to the domain.\nFor example: http://integration.totara83.localhost"
 
 # If this is being run inside WSL, then we need to modify the /etc/hosts file on Windows
 if [[ -f "/mnt/c/Windows/System32/drivers/etc/hosts" ]]; then
@@ -16,7 +18,7 @@ fi
 echo "Sudo access is required to update the hosts file"
 
 if ! sudo touch "$hosts_file" &> /dev/null; then
-  echo -e "\x1B[33mSudo access denied or the $hosts_file is not writable!\x1B[0m"
+  echo_error "Sudo access denied or the $hosts_file is not writable!"
   exit
 fi
 
@@ -28,7 +30,7 @@ if ! sudo test -r "$backup_path" -a -w "$backup_path"; then
 fi
 sudo rm -f "$backup_path"
 sudo cp "$hosts_file" "$backup_path"
-echo -e "\x1B[2mBacked up \x1B[4m$hosts_file\x1B[0m\x1B[2m to \x1B[4m$backup_path\x1B[0m"
+echo_info "Backed up $(underline_text $hosts_file) to $(underline_text $backup_path)"
 
 # Remove existing docker-dev hosts entries
 sudo sh -c "sed '/totara-docker-dev/d' $hosts_file > /tmp/hosts"
@@ -62,7 +64,7 @@ hosts="\n# totara-docker-dev start$hosts\n# totara-docker-dev end\n"
 # Add the hosts
 sudo -- sh -c -e "echo '$hosts' >> $hosts_file"
 
-echo -e "Successfully updated \x1B[4m$hosts_file\x1B[0m with docker-dev hosts"
+echo_success "Successfully updated $(echo_underline $hosts_file) with docker-dev hosts"
 if [ -n "$sites" ]; then
   echo "Hosts have been added for the following sites: ${sites[@]}"
 fi
