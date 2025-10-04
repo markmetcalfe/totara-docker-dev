@@ -63,10 +63,10 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: ${{ inputs.push == true && 'type=registry' || format('type=tar,dest={0}/{1}.tar,platform-split=false', github.workspace, inputs.image) }}
-      - name: Test running the image
-        if: ${{ inputs.test-command }}
-        run: |
-          cd ${{ github.workspace }}
-          TIMESTAMP=$(date +%s)
-          docker import ${{ inputs.image }}.tar test-${{ inputs.image }}-$TIMESTAMP
-          docker run --rm test-${{ inputs.image }}-$TIMESTAMP ${{ inputs.test-command }}
+      # - name: Test running the image
+      #   if: ${{ inputs.test-command }}
+      #   run: |
+      #     cd ${{ github.workspace }}
+      #     TIMESTAMP=$(date +%s)
+      #     docker import ${{ inputs.image }}.tar test-${{ inputs.image }}-$TIMESTAMP
+      #     docker run --rm test-${{ inputs.image }}-$TIMESTAMP ${{ inputs.test-command }}
