@@ -2,8 +2,7 @@ name: Build MSSQL images
 
 on:
   release:
-    types:
-      - created
+    types: [published]
   pull_request:
     branches:
       - master
