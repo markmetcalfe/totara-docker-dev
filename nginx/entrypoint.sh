@@ -18,11 +18,5 @@ fi
 # set dataroot permissions
 chown www-data:www-data $REMOTE_DATA -R
 
-# Replace the remote src variable in the nginx configuration with
-# the one defined in the environment variables
-cp /etc/nginx/totara-server.conf /tmp/temp.conf
-envsubst '$REMOTE_SRC' < /tmp/temp.conf > /etc/nginx/totara-server.conf
-rm /tmp/temp.conf
-
 # fire up nginx
 nginx -g 'daemon off;'

@@ -1,5 +1,7 @@
 services:
 
+  # Legacy containers (5.3 to 7.2) - these are no longer built or maintained
+
   php-5.3:
     image: totara/docker-dev-php53
     container_name: totara_php53
@@ -407,8 +409,11 @@ services:
     networks:
       - totara
 
+
+  # Current containers: 7.3 and above
+
   php-7.3:
-    image: totara/docker-dev-php73
+    image: ghcr.io/markmetcalfe/docker-dev-php73
     container_name: totara_php73
     restart: ${RESTART_POLICY:-no}
     working_dir: ${REMOTE_SRC}
@@ -432,14 +437,15 @@ services:
       - totara
 
   php-7.3-debug:
-    image: totara/docker-dev-php73-debug
+    image: ghcr.io/markmetcalfe/docker-dev-php73
     container_name: totara_php73_debug
     restart: ${RESTART_POLICY:-no}
     working_dir: ${REMOTE_SRC}
     environment:
       CONTAINERNAME: php-7.3-debug
       TZ: ${TIME_ZONE}
-      XDEBUG_CONFIG: client_host=${HOST_IP}
+      XDEBUG_CONFIG: client_host=${HOST_IP} log_level=0
+      XDEBUG_MODE: debug
       XDEBUG_SESSION: totara73
       PHP_IDE_CONFIG: serverName=totara73
       HIST_FILE: /root/.bash_history
@@ -457,9 +463,10 @@ services:
       - totara
 
   php-7.3-cron:
-    image: totara/docker-dev-php73-cron
+    image: ghcr.io/markmetcalfe/docker-dev-php73
     container_name: totara_php73_cron
     restart: ${RESTART_POLICY:-no}
+    entrypoint: ["/cron-entrypoint.sh"]
     environment:
       TZ: ${TIME_ZONE}
     volumes:
@@ -471,7 +478,7 @@ services:
       - totara
 
   php-7.4:
-    image: totara/docker-dev-php74
+    image: ghcr.io/markmetcalfe/docker-dev-php74
     container_name: totara_php74
     restart: ${RESTART_POLICY:-no}
     working_dir: ${REMOTE_SRC}
@@ -495,14 +502,15 @@ services:
       - totara
 
   php-7.4-debug:
-    image: totara/docker-dev-php74-debug
+    image: ghcr.io/markmetcalfe/docker-dev-php74
     container_name: totara_php74_debug
     restart: ${RESTART_POLICY:-no}
     working_dir: ${REMOTE_SRC}
     environment:
       CONTAINERNAME: php-7.4-debug
       TZ: ${TIME_ZONE}
-      XDEBUG_CONFIG: client_host=${HOST_IP}
+      XDEBUG_CONFIG: client_host=${HOST_IP} log_level=0
+      XDEBUG_MODE: debug
       XDEBUG_SESSION: totara74
       PHP_IDE_CONFIG: serverName=totara74
       HIST_FILE: /root/.bash_history
@@ -520,9 +528,10 @@ services:
       - totara
 
   php-7.4-cron:
-    image: totara/docker-dev-php74-cron
+    image: ghcr.io/markmetcalfe/docker-dev-php74
     container_name: totara_php74_cron
     restart: ${RESTART_POLICY:-no}
+    entrypoint: ["/cron-entrypoint.sh"]
     environment:
       TZ: ${TIME_ZONE}
     volumes:
@@ -534,7 +543,7 @@ services:
       - totara
 
   php-8.0:
-    image: totara/docker-dev-php80
+    image: ghcr.io/markmetcalfe/docker-dev-php80
     container_name: totara_php80
     restart: ${RESTART_POLICY:-no}
     working_dir: ${REMOTE_SRC}
@@ -557,14 +566,15 @@ services:
       - totara
 
   php-8.0-debug:
-    image: totara/docker-dev-php80-debug
+    image: ghcr.io/markmetcalfe/docker-dev-php80-debug
     container_name: totara_php80_debug
     restart: ${RESTART_POLICY:-no}
     working_dir: ${REMOTE_SRC}
     environment:
       CONTAINERNAME: php-8.0-debug
       TZ: ${TIME_ZONE}
-      XDEBUG_CONFIG: client_host=${HOST_IP}
+      XDEBUG_CONFIG: client_host=${HOST_IP} log_level=0
+      XDEBUG_MODE: debug
       XDEBUG_SESSION: totara80
       PHP_IDE_CONFIG: serverName=totara80
       HIST_FILE: /root/.bash_history
@@ -582,9 +592,10 @@ services:
       - totara
 
   php-8.0-cron:
-    image: totara/docker-dev-php80-cron
+    image: ghcr.io/markmetcalfe/docker-dev-php80
     container_name: totara_php80_cron
     restart: ${RESTART_POLICY:-no}
+    entrypoint: ["/cron-entrypoint.sh"]
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
@@ -594,7 +605,7 @@ services:
       - totara
 
   php-8.1:
-    image: totara/docker-dev-php81
+    image: ghcr.io/markmetcalfe/docker-dev-php81
     container_name: totara_php81
     restart: ${RESTART_POLICY:-no}
     working_dir: ${REMOTE_SRC}
@@ -617,9 +628,10 @@ services:
       - totara
 
   php-8.1-cron:
-    image: totara/docker-dev-php81-cron
+    image: ghcr.io/markmetcalfe/docker-dev-php81
     container_name: totara_php81_cron
     restart: ${RESTART_POLICY:-no}
+    entrypoint: ["/cron-entrypoint.sh"]
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
@@ -629,14 +641,15 @@ services:
       - totara
 
   php-8.1-debug:
-    image: totara/docker-dev-php81-debug
+    image: ghcr.io/markmetcalfe/docker-dev-php81
     container_name: totara_php81_debug
     restart: ${RESTART_POLICY:-no}
     working_dir: ${REMOTE_SRC}
     environment:
       CONTAINERNAME: php-8.1-debug
       TZ: ${TIME_ZONE}
-      XDEBUG_CONFIG: client_host=${HOST_IP}
+      XDEBUG_CONFIG: client_host=${HOST_IP} log_level=0
+      XDEBUG_MODE: debug
       XDEBUG_SESSION: totara81
       PHP_IDE_CONFIG: serverName=totara81
       HIST_FILE: /root/.bash_history
@@ -654,7 +667,7 @@ services:
       - totara
 
   php-8.2:
-    image: totara/docker-dev-php82
+    image: ghcr.io/markmetcalfe/docker-dev-php82
     container_name: totara_php82
     restart: ${RESTART_POLICY:-no}
     working_dir: ${REMOTE_SRC}
@@ -677,9 +690,10 @@ services:
       - totara
 
   php-8.2-cron:
-    image: totara/docker-dev-php82-cron
+    image: ghcr.io/markmetcalfe/docker-dev-php82
     container_name: totara_php82_cron
     restart: ${RESTART_POLICY:-no}
+    entrypoint: ["/cron-entrypoint.sh"]
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
@@ -689,14 +703,15 @@ services:
       - totara
 
   php-8.2-debug:
-    image: totara/docker-dev-php82-debug
+    image: ghcr.io/markmetcalfe/docker-dev-php82
     container_name: totara_php82_debug
     restart: ${RESTART_POLICY:-no}
     working_dir: ${REMOTE_SRC}
     environment:
       CONTAINERNAME: php-8.2-debug
       TZ: ${TIME_ZONE}
-      XDEBUG_CONFIG: client_host=${HOST_IP}
+      XDEBUG_CONFIG: client_host=${HOST_IP} log_level=0
+      XDEBUG_MODE: debug
       XDEBUG_SESSION: totara82
       PHP_IDE_CONFIG: serverName=totara82
       HIST_FILE: /root/.bash_history
@@ -714,7 +729,7 @@ services:
       - totara
 
   php-8.3:
-    image: totara/docker-dev-php83
+    image: ghcr.io/markmetcalfe/docker-dev-php83
     container_name: totara_php83
     restart: ${RESTART_POLICY:-no}
     working_dir: ${REMOTE_SRC}
@@ -737,9 +752,10 @@ services:
       - totara
 
   php-8.3-cron:
-    image: totara/docker-dev-php83-cron
+    image: ghcr.io/markmetcalfe/docker-dev-php83
     container_name: totara_php83_cron
     restart: ${RESTART_POLICY:-no}
+    entrypoint: ["/cron-entrypoint.sh"]
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
       - totara-data:${REMOTE_DATA}
@@ -749,14 +765,15 @@ services:
       - totara
 
   php-8.3-debug:
-    image: totara/docker-dev-php83-debug
+    image: ghcr.io/markmetcalfe/docker-dev-php83
     container_name: totara_php83_debug
     restart: ${RESTART_POLICY:-no}
     working_dir: ${REMOTE_SRC}
     environment:
       CONTAINERNAME: php-8.3-debug
       TZ: ${TIME_ZONE}
-      XDEBUG_CONFIG: client_host=${HOST_IP}
+      XDEBUG_CONFIG: client_host=${HOST_IP} log_level=0
+      XDEBUG_MODE: debug
       XDEBUG_SESSION: totara83
       PHP_IDE_CONFIG: serverName=totara83
       HIST_FILE: /root/.bash_history
@@ -773,9 +790,8 @@ services:
     networks:
       - totara
 
-
   php-8.4:
-    image: totara/docker-dev-php84
+    image: ghcr.io/markmetcalfe/docker-dev-php84
     container_name: totara_php84
     working_dir: ${REMOTE_SRC}
     environment:
@@ -797,7 +813,7 @@ services:
       - totara
 
   php-8.4-cron:
-    image: totara/docker-dev-php84-cron
+    image: ghcr.io/markmetcalfe/docker-dev-php84
     container_name: totara_php84_cron
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
@@ -808,13 +824,14 @@ services:
       - totara
 
   php-8.4-debug:
-    image: totara/docker-dev-php84-debug
+    image: ghcr.io/markmetcalfe/docker-dev-php84
     container_name: totara_php84_debug
     working_dir: ${REMOTE_SRC}
     environment:
       CONTAINERNAME: php-8.4-debug
       TZ: ${TIME_ZONE}
-      XDEBUG_CONFIG: client_host=${HOST_IP}
+      XDEBUG_CONFIG: client_host=${HOST_IP} log_level=0
+      XDEBUG_MODE: debug
       XDEBUG_SESSION: totara84
       PHP_IDE_CONFIG: serverName=totara84
       HIST_FILE: /root/.bash_history
