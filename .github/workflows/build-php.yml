@@ -1,9 +1,9 @@
 name: Build PHP images
 
 on:
-  release:
-    types:
-      - created
+  push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
@@ -25,5 +25,5 @@ jobs:
       image: php${{ matrix.version }}
       context: ./php
       dockerfile: php${{ matrix.version }}/Dockerfile
-      push: ${{ github.event_name == 'release' }}
+      push: ${{ github.event_name == 'push' }}
     secrets: inherit

@@ -1,9 +1,9 @@
 name: Build MSSQL images
 
 on:
-  release:
-    types:
-      - created
+  push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
@@ -25,5 +25,5 @@ jobs:
       context: ./mssql
       dockerfile: ${{ matrix.version }}/Dockerfile
       multiarch: false # Mssql does not support multiple architectures
-      push: ${{ github.event_name == 'release' }}
+      push: ${{ github.event_name == 'push' }}
     secrets: inherit
