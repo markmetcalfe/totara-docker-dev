@@ -25,5 +25,5 @@ jobs:
       image: php${{ matrix.version }}
       context: ./php
       dockerfile: php${{ matrix.version }}/Dockerfile
-      push: ${{ github.event_name == 'push' }}
+      push: false
     secrets: inherit
